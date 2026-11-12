@@ -107,27 +107,66 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 .v.on{background:var(--ink);color:var(--yellow);transform:translateY(5px);box-shadow:0 1px 0 var(--ink)}
 .v.want{outline:4px dashed var(--pink);outline-offset:4px}
 
-/* ---------- hub ---------- */
-.hub{background:var(--paper);padding:calc(var(--tab) + 10px)}
-.hub::before{width:520px;height:520px;left:50%;top:44%;translate:-50% -50%;background:var(--ht-rad-pink) center/520px no-repeat;mix-blend-mode:multiply}
-.hub::after{width:min(50vmin,340px);aspect-ratio:1;border-radius:50%;left:50%;top:44%;translate:-18% -78%;background:var(--yellow);mix-blend-mode:multiply}
-.hub-art{width:min(100%,clamp(250px,66vmin,560px));transform:rotate(-7deg);margin-top:clamp(20px,5vh,56px)}
-.hub-art svg{display:block;width:100%;height:auto;overflow:visible}
+/* ---------- hub: the pigeon plays this very game on a retro computer; no words here ---------- */
+.hub{background:var(--paper);padding:calc(var(--tab) + 6px)}
+.hub::before{width:520px;height:520px;left:50%;top:40%;translate:-50% -50% -120px;background:var(--ht-rad-pink) center/520px no-repeat;mix-blend-mode:multiply}
+.hub::after{width:min(56vmin,380px);aspect-ratio:1;border-radius:50%;left:50%;top:38%;translate:-10% -70% -200px;background:var(--yellow);mix-blend-mode:multiply}
 .perch{position:absolute;width:1px;height:1px}
-.hub .perch{left:27%;top:35%}
-.hub-copy{text-align:center;display:grid;gap:4px}
-.hub-count{font-family:var(--display);font-size:clamp(30px,8.4vmin,64px);line-height:1;letter-spacing:-.02em;text-wrap:balance}
-.hub-sub{font-size:clamp(15px,2.4vmin,18px);font-weight:500}
-.hub-how{font-family:var(--marker);font-size:clamp(18px,3vmin,23px);transform:rotate(-2deg)}
+.scene{font-size:clamp(5.5px,min(1.9vw,1.55vh),11.5px);width:46em;height:46em;perspective:95em;perspective-origin:calc(50% + var(--ptx,0)*-30%) calc(28% + var(--pty,0)*-20%)}
+.scene>*,.pc>*{position:absolute}
+.floor{left:-60%;right:-60%;bottom:-2em;height:44em;transform-origin:50% 100%;transform:rotateX(76deg);
+  background:repeating-linear-gradient(90deg,var(--ink) 0 .3em,transparent .3em 5em),repeating-linear-gradient(0deg,var(--ink) 0 .3em,transparent .3em 5em),var(--yellow);
+  -webkit-mask-image:linear-gradient(to top,#000 35%,transparent 96%);mask-image:linear-gradient(to top,#000 35%,transparent 96%);animation:floor 1.6s linear infinite}
+@keyframes floor{to{background-position:0 0,0 5em,0 0}}
+.pc{left:5em;top:3em;width:24em;height:26em;transform-style:preserve-3d;transform:rotateY(27deg) rotateX(-6deg);animation:pcsway 7s ease-in-out infinite alternate}
+@keyframes pcsway{to{transform:rotateY(20deg) rotateX(-3deg)}}
+.box{position:absolute;transform-style:preserve-3d}
+.f{position:absolute;box-sizing:border-box;border:.45em solid var(--ink);background:var(--white)}
+.mon{left:0;top:0;width:24em;height:19em}
+.mon .front{inset:0;transform:translateZ(8em);border-radius:1.5em}
+.mon .side{width:16em;height:19em;left:4em;top:0;transform:rotateY(-90deg) translateZ(12em);background:var(--blue)}
+.mon .top{width:24em;height:16em;left:0;top:1.5em;transform:rotateX(90deg) translateZ(9.5em);background:var(--pink)}
+.base{left:-2em;top:19em;width:28em;height:5em}
+.base .front{inset:0;transform:translateZ(10em);border-radius:.6em}
+.base .side{width:20em;height:5em;left:4em;top:0;transform:rotateY(-90deg) translateZ(14em);background:var(--blue)}
+.base .top{width:28em;height:20em;left:0;top:-7.5em;transform:rotateX(90deg) translateZ(2.5em);background:var(--pink)}
+.slot{position:absolute;left:3em;top:1.4em;width:9em;height:.9em;background:var(--ink)}
+.led{position:absolute;right:2.2em;bottom:1em;width:1em;height:1em;border-radius:50%;background:var(--pink);animation:led 1.1s steps(2) infinite}
+@keyframes led{50%{background:var(--yellow)}}
+.knob{position:absolute;left:2.2em;bottom:.8em;width:4em;height:1.2em;background:repeating-linear-gradient(90deg,var(--ink) 0 .35em,transparent .35em .8em)}
+.kbd{left:.5em;top:25.5em;width:21em;height:8em;transform:translateZ(17em) rotateX(74deg);border:.45em solid var(--ink);border-radius:.6em;box-sizing:border-box;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 .25em,transparent .25em 2em),repeating-linear-gradient(0deg,var(--ink) 0 .25em,transparent .25em 2em),var(--white)}
+.mouse{left:24em;top:28.5em;width:4em;height:5.4em;transform:translateZ(18em) rotateX(74deg);border:.45em solid var(--ink);border-radius:1.6em 1.6em 1.2em 1.2em;background:var(--yellow);box-sizing:border-box}
+.crt{position:absolute;inset:1.3em 1.3em 3.3em;background:var(--ink);border-radius:1.3em;overflow:hidden;animation:flick 3.7s steps(1) infinite}
+.crt::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:5;background:repeating-linear-gradient(0deg,rgba(250,250,245,.14) 0 .16em,transparent .16em .5em);animation:scan 1s linear infinite}
+@keyframes scan{to{background-position:0 .5em}}
+@keyframes flick{0%,100%{filter:none}47%{filter:brightness(1.3)}49%{filter:none}}
+.mg{position:absolute;inset:0;display:grid;grid-template:1fr 1fr/1fr 1fr;gap:.9em;padding:1.2em}
+.mt{position:relative;background:var(--c);color:var(--k,var(--ink));border-radius:.5em;display:grid;place-items:center;transition:transform .12s}
+.mt svg{width:55%;height:55%}
+.mt.hit{transform:scale(.84)}
+.mt.open{position:absolute;inset:.6em;z-index:2;animation:mopen .3s cubic-bezier(.2,1.3,.4,1)}
+@keyframes mopen{from{transform:scale(.35)}}
+.mt.open svg{animation:mtry .45s ease-in-out infinite alternate}
+@keyframes mtry{from{transform:rotate(-10deg) scale(.88)}to{transform:rotate(10deg) scale(1.12)}}
+.cur{position:absolute;z-index:3;left:50%;top:50%;width:2.4em;height:2.4em;background:var(--white);clip-path:polygon(0 0,100% 62%,56% 68%,78% 100%,58% 100%,40% 74%,10% 100%);
+  transition:left .7s cubic-bezier(.4,1.4,.5,1),top .7s cubic-bezier(.4,1.4,.5,1);pointer-events:none}
+.res{position:absolute;z-index:4;inset:0;display:none;pointer-events:none}
+.mg.fail .res,.mg.win .res{display:block}
+.mg.fail .res{background:linear-gradient(45deg,transparent 44%,var(--pink) 44% 56%,transparent 56%),linear-gradient(-45deg,transparent 44%,var(--pink) 44% 56%,transparent 56%)}
+.mg.win .res{background:radial-gradient(circle,transparent 30%,var(--yellow) 31% 46%,transparent 47%);animation:mopen .3s}
+.mg.fail{animation:mshake .4s linear}
+@keyframes mshake{20%{transform:translateX(-.9em)}40%{transform:translateX(.8em)}60%{transform:translateX(-.5em)}80%{transform:translateX(.3em)}}
+.tpt{left:20em;top:35em;width:27em;height:auto;overflow:visible;transform:rotateY(-12deg) rotate(-5deg)}
+.hub .perch{left:37em;top:31em}
 .edge{position:absolute;z-index:2;display:grid;place-items:center;mix-blend-mode:multiply;color:var(--ink)}
-.edge span{font-family:var(--display);font-size:clamp(19px,4.6vmin,32px);line-height:1;white-space:nowrap}
+.edge svg{width:calc(var(--tab)*.5);height:calc(var(--tab)*.5);animation:nudge 6.4s ease-in-out infinite}
 .e-right{right:0;top:0;bottom:0;width:var(--tab);background:var(--pink)}
 .e-left{left:0;top:0;bottom:0;width:var(--tab);background:var(--yellow)}
 .e-up{top:0;left:0;right:0;height:var(--tab);background:var(--blue);color:var(--white)}
 .e-down{bottom:0;left:0;right:0;height:var(--tab);background:var(--ink);color:var(--white);mix-blend-mode:normal}
-.e-right span{writing-mode:vertical-rl}
-.e-left span{writing-mode:vertical-rl;transform:rotate(180deg)}
-.e-right span::after{content:attr(data-n);font-family:var(--marker);font-size:.8em;margin-top:.5em}
+.e-right svg{--nx:-9px}.e-left svg{--nx:9px;animation-delay:1.6s}.e-up svg{--ny:8px;animation-delay:3.2s}.e-down svg{--ny:-8px;animation-delay:4.8s}
+.ic{fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
 
 /* ---------- nuty ---------- */
 .nuty{background:var(--pink);padding-left:max(46px,env(safe-area-inset-left,0px));padding-right:max(46px,env(safe-area-inset-right,0px))}
@@ -199,32 +238,42 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 #trace{width:100vw;height:clamp(90px,18vh,150px);display:block;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)))}
 
 /* ---------- bird ---------- */
-#bird{position:absolute;left:0;top:0;z-index:20;width:var(--bw,104px);aspect-ratio:150/140;pointer-events:auto;cursor:pointer;
-  transform:translate(var(--bx,0px),calc(var(--by,0px) - var(--lift,0px)));transition:transform .62s cubic-bezier(.3,1.3,.4,1),width .5s;
+#bird{position:absolute;left:0;top:0;z-index:20;width:104px;aspect-ratio:150/140;cursor:pointer;will-change:transform;
   filter:drop-shadow(3px 4px 0 rgba(20,32,132,.28))}
-#bird.snap{transition:none}
+.b-flip{width:100%;height:100%;transform:scaleX(var(--face,1)) rotate(var(--tilt,0deg));transform-origin:50% 78%}
 #bird svg{display:block;width:100%;height:100%;overflow:visible}
+.b-sq{transform-box:fill-box;transform-origin:50% 100%;transform:scale(var(--sx,1),var(--sy,1))}
 .b-all{transform-box:fill-box;transform-origin:50% 100%}
-.b-head{transform-box:fill-box;transform-origin:20% 90%}
+.b-head{transform-box:fill-box;transform-origin:20% 90%;transition:transform .16s}
 .b-wing{transform-box:fill-box;transform-origin:20% 30%}
-.b-body{transform-box:fill-box;transform-origin:50% 80%;transform:scale(calc(1 + var(--puff,0)*.16))}
+.b-tail{transform-box:fill-box;transform-origin:100% 55%}
+.b-legs{transform-box:fill-box;transform-origin:50% 0;transition:transform .14s}
+.b-body{transform-box:fill-box;transform-origin:50% 80%;animation:breath 3.4s ease-in-out infinite}
+.b-pupil{transform:translate(calc(var(--ex,0)*1px),calc(var(--ey,0)*1px));transition:transform .14s}
 .b-lid{transform-box:fill-box;transform-origin:50% 0%;transform:scaleY(0)}
 .b-z{opacity:0;font-family:var(--display);font-size:18px;fill:var(--ink)}
+@keyframes breath{0%,100%{transform:scale(calc(1 + var(--puff,0)*.16))}50%{transform:scale(calc(1.035 + var(--puff,0)*.16),calc(.975 + var(--puff,0)*.16))}}
 @keyframes bob{0%,58%,100%{transform:translate(0,0)}64%,90%{transform:translate(5px,-1px)}}
 @keyframes blink{0%,94%,100%{transform:scaleY(0)}96%,98%{transform:scaleY(1)}}
-@keyframes flap{0%,100%{transform:rotate(0)}50%{transform:rotate(-58deg) scaleY(1.15)}}
+@keyframes flap{0%,100%{transform:rotate(14deg)}50%{transform:rotate(-72deg) scaleY(1.25)}}
 @keyframes jump{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-26px) rotate(-8deg)}60%{transform:translateY(0) rotate(0)}78%{transform:translateY(-10px)}}
 @keyframes ruffle{0%,100%{transform:rotate(0)}20%{transform:rotate(-7deg)}40%{transform:rotate(6deg)}60%{transform:rotate(-5deg)}80%{transform:rotate(3deg)}}
 @keyframes zz{0%{opacity:0;transform:translate(0,0)}30%{opacity:1}100%{opacity:0;transform:translate(10px,-22px)}}
-@keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.035,.985)}}
-#bird[data-mood="idle"] .b-head,#bird[data-mood="listen"] .b-head{animation:bob 2.6s steps(1) infinite}
-#bird[data-mood="listen"] .b-head{animation:none;transform:rotate(-13deg)}
+@keyframes pant{0%,100%{transform:scale(1)}50%{transform:scale(1.04,.97)}}
+@keyframes peck{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(62deg) translate(3px,5px)}40%,82%{transform:rotate(10deg)}}
+@keyframes hop{0%,100%{transform:translateY(0)}45%{transform:translateY(-15px) rotate(-5deg)}}
+@keyframes wag{0%,100%{transform:rotate(0)}25%{transform:rotate(18deg)}50%{transform:rotate(-14deg)}75%{transform:rotate(11deg)}}
+@keyframes preen{0%,100%{transform:rotate(0)}18%,84%{transform:rotate(-64deg) translate(-7px,9px)}34%,66%{transform:rotate(-54deg) translate(-7px,9px)}50%{transform:rotate(-68deg) translate(-7px,9px)}}
+#bird[data-mood="idle"] .b-head{animation:bob 2.6s steps(1) infinite}
+#bird[data-mood="listen"] .b-head{transform:rotate(-13deg)}
 #bird[data-mood="hear"] .b-head{animation:bob .5s steps(1) infinite}
 #bird[data-mood="good"] .b-head{transform:rotate(-6deg) translate(2px,-2px)}
-#bird[data-mood="good"] .b-all{animation:breathe .6s ease-in-out infinite}
+#bird[data-mood="good"] .b-all{animation:pant .6s ease-in-out infinite}
 #bird[data-mood="win"] .b-all{animation:jump .8s ease-out 1}
-#bird[data-mood="win"] .b-wing,#bird[data-mood="fly"] .b-wing{animation:flap .16s linear infinite}
-#bird[data-mood="fly"] .b-all{transform:rotate(-10deg) translateY(-8px)}
+#bird[data-mood="win"] .b-wing,#bird[data-mood="fly"] .b-wing{animation:flap .15s linear infinite}
+#bird[data-mood="fly"] .b-head{transform:rotate(8deg) translate(4px,2px)}
+#bird[data-mood="fly"] .b-legs{transform:translateY(-9px) scaleY(.45)}
+#bird[data-mood="fly"] .b-tail{transform:rotate(-14deg)}
 #bird[data-mood="bad"] .b-all{animation:ruffle .45s linear 1}
 #bird[data-mood="bad"] .b-head{transform:rotate(16deg)}
 #bird[data-mood="sleep"] .b-head{transform:translate(-4px,9px) rotate(14deg)}
@@ -232,11 +281,66 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 #bird[data-mood="sleep"] .b-z{animation:zz 2.4s ease-out infinite}
 #bird[data-mood="sleep"] .b-z2{animation-delay:1.2s}
 #bird:not([data-mood="sleep"]) .b-lid{animation:blink 4.3s linear infinite}
+#bird[data-act="peck"] .b-head{animation:peck .7s ease-in-out 1}
+#bird[data-act="hop"] .b-all{animation:hop .42s ease-out 1}
+#bird[data-act="wag"] .b-tail{animation:wag .5s ease-in-out 1}
+#bird[data-act="preen"] .b-head{animation:preen 1.1s ease-in-out 1}
 #say{position:absolute;left:78%;bottom:86%;background:var(--white);color:var(--ink);font-family:var(--marker);font-size:clamp(19px,3vmin,24px);line-height:1;
   padding:7px 12px 8px;white-space:nowrap;box-shadow:3px 4px 0 var(--ink);transform:rotate(-5deg) scale(0);transform-origin:0 100%;
   transition:transform .22s cubic-bezier(.2,1.6,.4,1);pointer-events:none}
 #say.on{transform:rotate(-5deg) scale(1)}
 #bird.flip #say{left:auto;right:70%;transform-origin:100% 100%}
+
+/* ---------- camera, follow-through, parallax, particles ---------- */
+#stage{background:#C8CBC0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='132'%3E%3Cg fill='none' stroke='%23142084' stroke-width='1.4' opacity='.38'%3E%3Ccircle cx='66' cy='66' r='9'/%3E%3Cpath d='M48 66h36M66 48v36M4 4h9M4 4v9M128 128h-9M128 128v-9'/%3E%3C/g%3E%3C/svg%3E") 0 0/132px 132px}
+#cam{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform}
+.room{box-shadow:0 0 0 3px var(--ink),11px 13px 0 rgba(20,32,132,.22)}
+[data-lag]{translate:calc(var(--lx,0)*var(--k,1)*1px) calc(var(--ly,0)*var(--k,1)*1px);rotate:calc(var(--lx,0)*var(--k,1)*.06deg)}
+#fx{position:absolute;inset:0;width:100%;height:100%;z-index:30;pointer-events:none}
+/* 3D: every poster is a little stage with depth, and the wall swings in perspective while it travels */
+#stage{perspective:1300px}
+.room{perspective:1000px;perspective-origin:calc(50% + var(--ptx,0)*-24%) calc(50% + var(--pty,0)*-24%)}
+[data-lag]{translate:calc(var(--lx,0)*var(--k,1)*1px) calc(var(--ly,0)*var(--k,1)*1px) calc(var(--z,34)*1px)}
+#bird{perspective:420px}
+.b-flip{transform:rotateY(calc((1 - var(--face,1))*90deg)) rotate(var(--tilt,0deg));transition:transform .26s}
+@keyframes dots{to{background-size:474px}}
+.nuty::after,.stroj::after,.dlugie::after{animation:dots 3.1s ease-in-out infinite alternate}
+.nuty::before,.stroj::before,.dlugie::before,.hub::after{transform:scale(calc(1 + var(--beat,0)*.17))}
+.palce::before{transform:rotate(-14deg) scaleY(calc(1 + var(--beat,0)*.3))}
+.fl{position:absolute;z-index:0;pointer-events:none;width:var(--s);height:var(--s);left:var(--x);top:var(--y);color:var(--c);mix-blend-mode:multiply;translate:0 0 -90px;
+  animation:drift var(--d) ease-in-out var(--dl) infinite alternate}
+.fl.s0{border:calc(var(--s)*.2) solid currentColor;border-radius:50%;box-sizing:border-box}
+.fl.s1{background:currentColor;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.fl.s2{background:currentColor;border-radius:999px 999px 0 0;height:calc(var(--s)*.5)}
+.fl.s3{background:linear-gradient(currentColor 0 0) center/100% 26% no-repeat,linear-gradient(currentColor 0 0) center/26% 100% no-repeat}
+.stroj .fl,.dlugie .fl{mix-blend-mode:normal;opacity:.6}
+@keyframes drift{from{transform:translate(0,0) rotate(0)}to{transform:translate(var(--tx),var(--ty)) rotate(var(--r))}}
+@keyframes spin{to{rotate:360deg}}
+@keyframes swell{to{scale:1.07}}
+.nuty::before{translate:calc(var(--lx,0)*-2px) calc(var(--ly,0)*-2px) -170px}
+.nuty::after,.stroj::after,.dlugie::after{left:-30px;right:-30px}
+.nuty::after,.dlugie::after{translate:calc(var(--lx,0)*1.4px + var(--ptx,0)*-11px) 0}
+.palce::before{translate:calc(var(--ptx,0)*-12px) calc(var(--ly,0)*-1.5px + var(--pty,0)*-12px)}
+.palce::after{translate:calc(var(--lx,0)*-2px + var(--ptx,0)*18px) calc(var(--pty,0)*18px);animation:spin 110s linear infinite}
+.stroj::before{translate:calc(var(--lx,0)*-2px) 0 -170px}
+.dlugie::before{translate:calc(var(--lx,0)*-2px) 0 -170px;scale:calc(1 + var(--grow,0)*.95);transition:scale .9s cubic-bezier(.2,1,.3,1)}
+.hub::before{animation:spin 140s linear infinite}
+.cap{transition:transform .08s}
+.cap.down{transform:translateY(14px)}
+.tpt .bell{transform-box:fill-box;transform-origin:0 50%}
+.tpt.toot .bell{animation:toot .28s ease-out 1}
+@keyframes toot{35%{transform:scale(1.07,1.16)}}
+[data-valve],[data-bell]{cursor:pointer}
+/* hub edges invite a swipe now and then */
+@keyframes nudge{0%,84%,100%{translate:0 0}89%{translate:var(--nx,0) var(--ny,0)}94%{translate:calc(var(--nx,0)*-.35) calc(var(--ny,0)*-.35)}}
+/* first load: the hub gets pasted together */
+#stage.boot [data-in]{animation:var(--an) .62s cubic-bezier(.2,1.35,.35,1) backwards;animation-delay:calc(var(--i,0)*95ms + 180ms)}
+@keyframes in-drop{from{opacity:0;transform:translateY(-70px) rotate(-14deg) scale(1.18)}}
+@keyframes in-pop{from{opacity:0;transform:scale(.3) rotate(-9deg)}}
+@keyframes in-up{from{opacity:0;transform:translateY(44px) rotate(4deg)}}
+@keyframes in-r{from{transform:translateX(105%)}}@keyframes in-l{from{transform:translateX(-105%)}}
+@keyframes in-t{from{transform:translateY(-105%)}}@keyframes in-b{from{transform:translateY(105%)}}
+.bars i.new{animation:in-pop .3s cubic-bezier(.2,1.6,.4,1)}
 
 /* ---------- registration-mark map ---------- */
 #map{position:absolute;z-index:25;right:max(12px,env(safe-area-inset-right,0px));top:12px;width:40px;height:40px;pointer-events:none;color:var(--ink);transition:color .3s}
@@ -250,7 +354,6 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 @media (max-height:560px){
   .room{gap:8px;padding-block:44px}
   .card{width:min(100%,clamp(200px,58vh,360px))}.deck{width:min(100%,clamp(200px,58vh,360px))}
-  .hub-art{margin-top:30px;width:min(100%,46vh)}
   .huge{font-size:clamp(60px,20vh,120px)}.clock{font-size:clamp(56px,18vh,110px)}
 }
 @media (max-height:560px) and (min-width:560px){
@@ -260,55 +363,76 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
   .palce .card{grid-area:1/1/4/2}.palce .big-name{grid-area:1/2}.palce .horn{grid-area:2/2}.palce .score{grid-area:3/2}
   .dlugie .card{width:140px!important}
   #trace{height:60px}
-  .hub{flex-direction:row;flex-wrap:wrap;align-content:center;column-gap:28px}
-  .hub-art{margin-top:0;width:min(44%,60vh)}
-  .hub-how{flex-basis:100%;text-align:center}
-}
+  }
 @media (prefers-reduced-motion:reduce){
-  #bird,#bird *,.stamp.on,.hint{animation:none!important;transition:none!important}
+  #bird,#bird *,.stamp.on,.hint,.edge svg,.fl,.floor,.pc,.crt,.crt::after,.mt,.room::before,.room::after,[data-in],.bars i{animation:none!important;transition:none!important}
   .stamp.on{transform:rotate(12deg) scale(1)}
 }
 </style>
 
-<div id="stage">
-  <div id="wall">
+<div id="stage" class="boot">
+  <div id="cam"><div id="wall">
 
     <section class="room hub" id="r-hub" aria-label="Środek">
-      <div class="hub-art">
-        <svg viewBox="0 0 420 200" aria-hidden="true">
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+        <symbol id="i1" viewBox="0 0 24 24"><ellipse cx="9" cy="17.500" rx="4.600" ry="3.400" transform="rotate(-20 9 17.500)" fill="currentColor"/><path d="M13.300 16.500V3"/></symbol>
+        <symbol id="i2" viewBox="0 0 24 24"><circle cx="5" cy="12" r="3.100"/><circle cx="12" cy="12" r="3.100"/><circle cx="19" cy="12" r="3.100"/></symbol>
+        <symbol id="i3" viewBox="0 0 24 24"><path d="M3 18a9 9 0 0 1 18 0M12 18l4.500-9"/></symbol>
+        <symbol id="i4" viewBox="0 0 24 24"><path d="M2 12c3-9 5-9 7 0s4 9 7 0 4-6 6-2"/></symbol>
+      </defs></svg>
+      <div class="scene" data-lag data-in style="--k:.7;--z:0;--an:in-pop;--i:2">
+        <div class="floor"></div>
+        <div class="pc">
+          <div class="box mon">
+            <div class="f side"></div><div class="f top"></div>
+            <div class="f front"><div class="crt"><div class="mg" id="mg">
+              <button class="mt" style="--c:var(--pink)" data-go="1,0" aria-label="Nuty: fiszki z nasłuchem"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i1"/></svg></button>
+              <button class="mt" style="--c:var(--yellow)" data-go="-1,0" aria-label="Palce: ćwiczenie palcowania"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i2"/></svg></button>
+              <button class="mt" style="--c:var(--blue);--k:var(--white)" data-go="0,-1" aria-label="Strój: stroik i tabela chwytów"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i3"/></svg></button>
+              <button class="mt" style="--c:var(--white)" data-go="0,1" aria-label="Długie dźwięki"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i4"/></svg></button>
+              <i class="cur"></i><i class="res"></i>
+            </div></div><i class="knob"></i><i class="led"></i></div>
+          </div>
+          <div class="box base"><div class="f side"></div><div class="f top"></div><div class="f front"><i class="slot"></i><i class="led"></i></div></div>
+          <div class="kbd"></div><div class="mouse"></div>
+        </div>
+        <svg class="tpt" viewBox="0 0 470 170" aria-hidden="true">
           <g class="pl pl-y" fill="none" stroke="var(--yellow)" stroke-linecap="round">
-            <path d="M44 72H310" stroke-width="18"/>
-            <rect x="96" y="72" width="232" height="62" rx="31" stroke-width="16"/>
-            <path d="M300 58C344 58 372 40 402 4V140C372 104 344 86 300 86Z" fill="var(--yellow)" stroke="none"/>
+            <path d="M330 52H128a33 33 0 0 0 0 66H214" stroke-width="14"/>
+            <path d="M52 86H352a16 16 0 0 1 0 32H292" stroke-width="10"/>
+            <path class="bell" d="M326 45C376 45 416 32 448 2V102C416 72 376 59 326 59Z" fill="var(--yellow)" stroke="none"/>
           </g>
           <g class="pl pl-p" fill="var(--pink)">
-            <rect x="166" y="40" width="27" height="118" rx="8"/><rect x="203" y="40" width="27" height="118" rx="8"/><rect x="240" y="40" width="27" height="118" rx="8"/>
-            <ellipse cx="402" cy="72" rx="10" ry="69"/>
-            <path d="M14 58L48 65V79L14 86Z"/>
+            <rect x="212" y="44" width="26" height="90" rx="6"/><rect x="247" y="44" width="26" height="90" rx="6"/><rect x="282" y="44" width="26" height="90" rx="6"/>
+            <path d="M128 57H326M132 123H210M100 86a30 30 0 0 0 28 37" fill="none" stroke="var(--pink)" stroke-width="4.500"/>
+            <path class="bell" d="M326 59C376 59 416 72 448 102V84C416 60 376 53 326 53Z"/>
+            <ellipse class="bell" cx="448" cy="52" rx="8" ry="50"/>
           </g>
           <g class="pl pl-b" fill="var(--blue)" stroke="var(--blue)">
-            <path d="M179.500 40V20M216.500 40V20M253.500 40V20" stroke-width="6" fill="none"/>
-            <ellipse cx="179.500" cy="17" rx="14" ry="6"/><ellipse cx="216.500" cy="17" rx="14" ry="6"/><ellipse cx="253.500" cy="17" rx="14" ry="6"/>
-            <path d="M166 150h27M203 150h27M240 150h27" stroke-width="5" fill="none"/>
+            <ellipse class="bell" cx="449" cy="52" rx="4" ry="37" stroke="none"/>
+            <path d="M8 75l22 7v8l-22 7zM30 82h26v8H30z" stroke="none"/>
+            <g class="cap" data-c="1"><path d="M225 44V28" stroke-width="5" fill="none"/><ellipse cx="225" cy="25" rx="12" ry="5"/></g>
+            <g class="cap" data-c="2"><path d="M260 44V28" stroke-width="5" fill="none"/><ellipse cx="260" cy="25" rx="12" ry="5"/></g>
+            <g class="cap" data-c="3"><path d="M295 44V28" stroke-width="5" fill="none"/><ellipse cx="295" cy="25" rx="12" ry="5"/></g>
+            <path d="M214 136h22M249 136h22M284 136h22" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <path d="M170 59V81M334 59V81" stroke-width="4" fill="none"/><path d="M318 81c0-15 17-15 17 0" stroke-width="3" fill="none"/>
           </g>
+          <g fill="none" stroke="var(--white)" stroke-linecap="round" opacity=".85"><path d="M134 47.500H318" stroke-width="2.400"/><path d="M62 83.500H340" stroke-width="1.700"/><path d="M340 46C380 44 414 32 440 12" stroke-width="2.600"/></g>
+          <rect data-valve="1" x="207" y="6" width="35" height="146" fill="transparent"/><rect data-valve="2" x="242" y="6" width="35" height="146" fill="transparent"/><rect data-valve="3" x="277" y="6" width="35" height="146" fill="transparent"/>
+          <path data-bell d="M322 38C376 38 416 26 456 0V106C416 80 376 66 322 66Z" fill="transparent"/>
         </svg>
         <div class="perch"></div>
       </div>
-      <div class="hub-copy">
-        <p class="hub-count reg" id="hubCount">3 nowe nuty</p>
-        <p class="hub-sub" id="hubSub">Zaczynasz od c<sup>1</sup>, d<sup>1</sup> i e<sup>1</sup>.</p>
-      </div>
-      <p class="hub-how">przesuń ekran w dowolną stronę</p>
-      <button class="edge e-right" data-go="1,0" data-torn="left" aria-label="Nuty: fiszki z nasłuchem"><span id="edgeNuty" data-n="">nuty</span></button>
-      <button class="edge e-left" data-go="-1,0" data-torn="right" aria-label="Palce: ćwiczenie palcowania"><span>palce</span></button>
-      <button class="edge e-up" data-go="0,-1" data-torn="bottom" aria-label="Strój: stroik i tabela chwytów"><span>strój</span></button>
-      <button class="edge e-down" data-go="0,1" data-torn="top" aria-label="Długie dźwięki"><span>długie dźwięki</span></button>
+      <button class="edge e-right" data-in style="--an:in-r;--i:1" data-go="1,0" data-torn="left" aria-label="Nuty: fiszki z nasłuchem"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i1"/></svg></button>
+      <button class="edge e-left" data-in style="--an:in-l;--i:3" data-go="-1,0" data-torn="right" aria-label="Palce: ćwiczenie palcowania"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i2"/></svg></button>
+      <button class="edge e-up" data-in style="--an:in-t;--i:0" data-go="0,-1" data-torn="bottom" aria-label="Strój: stroik i tabela chwytów"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i3"/></svg></button>
+      <button class="edge e-down" data-in style="--an:in-b;--i:2" data-go="0,1" data-torn="top" aria-label="Długie dźwięki"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i4"/></svg></button>
     </section>
 
     <section class="room nuty" id="r-nuty" aria-label="Nuty">
-      <h1 class="title">nuty</h1>
-      <div class="bars" id="bars" aria-hidden="true"></div>
-      <div class="deck" id="deck">
+      <h1 class="title" data-lag style="--k:.5">nuty</h1>
+      <div class="bars" id="bars" aria-hidden="true" data-lag style="--k:.8"></div>
+      <div class="deck" id="deck" data-lag>
         <div class="sheet s3"></div><div class="sheet s2"></div>
         <div class="card" id="card">
           <i class="crop c1"></i><i class="crop c2"></i><i class="crop c3"></i><i class="crop c4"></i>
@@ -316,12 +440,12 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
           <div class="stamp" id="stamp"><b></b><i></i></div>
         </div>
       </div>
-      <div class="done" id="done" hidden>
+      <div class="done" id="done" hidden data-lag>
         <h2 class="reg" id="doneH">na dziś zagrane</h2>
         <p id="doneP"></p>
         <p class="says" id="doneMore">przesuń w lewo na dogrywkę</p>
       </div>
-      <p class="says label" id="heard" aria-live="polite"></p>
+      <p class="says label" id="heard" aria-live="polite" data-lag style="--k:1.5"></p>
       <div class="perch"></div>
       <button class="tab t-left" data-go="0,0" data-torn="right"><span>środek</span></button>
       <button class="tab t-right dark" data-act="E" data-torn="left" id="skipTab"><span>nie wiem</span></button>
@@ -334,14 +458,14 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
     </section>
 
     <section class="room palce" id="r-palce" aria-label="Palce">
-      <h1 class="title">palce</h1>
-      <div class="card small" id="pCard">
+      <h1 class="title" data-lag style="--k:.5">palce</h1>
+      <div class="card small" id="pCard" data-lag>
         <i class="crop c1"></i><i class="crop c2"></i><i class="crop c3"></i><i class="crop c4"></i>
         <div id="pStaff" style="display:contents"></div>
         <div class="stamp" id="pStamp"><b></b><i></i></div>
       </div>
-      <div class="big-name reg" id="pName"></div>
-      <div class="horn" data-nodrag>
+      <div class="big-name reg" id="pName" data-lag style="--k:.7"></div>
+      <div class="horn" data-nodrag data-lag style="--k:1.2">
         <div class="valves" id="pValves">
           <button class="v" data-v="0" aria-pressed="false" aria-label="Wentyl 1">1</button>
           <button class="v" data-v="1" aria-pressed="false" aria-label="Wentyl 2">2</button>
@@ -349,23 +473,23 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
         </div>
         <button class="blow" id="pBlow">dmuchnij</button>
       </div>
-      <p class="score" id="pScore">ustaw wentyle i dmuchnij</p>
+      <p class="score" id="pScore" data-lag style="--k:1.5">ustaw wentyle i dmuchnij</p>
       <div class="perch"></div>
       <button class="tab t-right" data-go="0,0" data-torn="left"><span>środek</span></button>
     </section>
 
     <section class="room stroj" id="r-stroj" aria-label="Strój">
-      <h1 class="title">strój</h1>
-      <div class="huge" id="sName"></div>
-      <div class="meter" aria-hidden="true"><i class="fix"></i><i class="mov" id="sMov"></i></div>
-      <p class="says" id="sSay"></p>
-      <div class="row">
+      <h1 class="title" data-lag style="--k:.5">strój</h1>
+      <div class="huge" id="sName" data-lag style="--k:.6"></div>
+      <div class="meter" aria-hidden="true" data-lag style="--k:1.1"><i class="fix"></i><i class="mov" id="sMov"></i></div>
+      <p class="says" id="sSay" data-lag style="--k:1.4"></p>
+      <div class="row" data-lag>
         <div class="card small" id="sCard" style="width:clamp(170px,26vh,240px)">
           <div id="sStaff" style="display:contents"></div>
         </div>
         <div class="valves card-sm-valves" id="sValves"></div>
       </div>
-      <div class="sets" data-nodrag>
+      <div class="sets" data-nodrag data-lag style="--k:1.3">
         <div class="set"><span>trąbka</span><div class="seg" id="setTr"><button data-val="2">B</button><button data-val="0">C</button></div>
           <span>a<sup>1</sup></span><div class="seg" id="setA4"><button data-val="440">440</button><button data-val="442">442</button></div></div>
         <div class="set"><span>dźwięki aplikacji</span><div class="seg" id="setSnd"><button data-val="1">tak</button><button data-val="0">nie</button></div></div>
@@ -376,44 +500,48 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
     </section>
 
     <section class="room dlugie" id="r-dlugie" aria-label="Długie dźwięki">
-      <h1 class="title">długie dźwięki</h1>
-      <div class="card small" id="dCard" style="width:clamp(170px,26vh,250px)">
+      <h1 class="title" data-lag style="--k:.5">długie dźwięki</h1>
+      <div class="card small" id="dCard" data-lag style="width:clamp(170px,26vh,250px)">
         <div id="dStaff" style="display:contents"></div>
       </div>
-      <div class="clock" id="dClock">0,0<small>s</small></div>
+      <div class="clock" id="dClock" data-lag style="--k:.7">0,0<small>s</small></div>
       <canvas id="trace" aria-hidden="true"></canvas>
-      <p class="says" id="dSay"></p>
+      <p class="says" id="dSay" data-lag style="--k:1.4"></p>
       <div class="perch"></div>
       <button class="tab t-top" data-go="0,0" data-torn="bottom"><span>środek</span></button>
     </section>
 
-  </div>
+  </div></div>
 
+  <canvas id="fx" aria-hidden="true"></canvas>
   <div id="bird" data-mood="idle" role="img" aria-label="Gołąb">
-    <svg viewBox="0 0 150 140">
+    <div class="b-flip"><svg viewBox="0 0 150 140">
       <defs><filter id="sticker" x="-25%" y="-25%" width="150%" height="150%">
         <feGaussianBlur in="SourceAlpha" stdDeviation="3.2"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 1 1 1 1 1 1"/></feComponentTransfer>
         <feComposite in2="SourceAlpha" operator="over" result="o"/><feFlood flood-color="#FAFAF5"/><feComposite in2="o" operator="in" result="w"/>
         <feMerge><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-      <g class="b-all"><g filter="url(#sticker)">
-        <path d="M61 112L59 131H70M59 131L51 133M79 112L81 131H92M81 131L73 133" fill="none" stroke="var(--ink)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M34 76L5 66L14 82L3 96L36 94Z" fill="var(--blue)"/>
+      <g class="b-sq"><g class="b-all"><g filter="url(#sticker)">
+        <path class="b-legs" d="M60 110V129M60 129l-10 5M60 129l1 7M60 129l10 3M80 110V129M80 129l-10 5M80 129l1 7M80 129l10 3" fill="none" stroke="var(--red)" stroke-width="3.600" stroke-linecap="round" stroke-linejoin="round"/>
+        <g class="b-tail"><path d="M36 76L3 58l9 15-11 5 12 7-9 12 34-5z" fill="var(--blue)"/><path d="M12 73l22 6M13 85l21 0" stroke="var(--white)" stroke-width="1.800" fill="none" opacity=".8"/></g>
         <g class="b-body">
-          <ellipse cx="66" cy="82" rx="42" ry="32" fill="var(--pink)" transform="rotate(-8 66 82)"/>
-          <path class="b-wing" d="M38 74C52 56 84 58 94 80C86 100 56 106 34 92Z" fill="var(--blue)" style="mix-blend-mode:multiply"/>
+          <path d="M22 84C20 60 44 48 70 50c24 2 40 16 42 36 1 19-18 30-44 30S24 104 22 84z" fill="var(--pink)"/>
+          <path d="M40 101c16 13 46 12 64-4-8 20-52 24-64 4z" fill="var(--yellow)" style="mix-blend-mode:multiply"/>
+          <g class="b-wing"><path d="M34 72c16-19 52-17 64 6-4 10-13 17-23 21l-6-9-4 11-11 2-2-10-9 9c-8-3-13-7-15-11z" fill="var(--blue)" style="mix-blend-mode:multiply"/>
+            <path d="M50 75c11-6 26-5 36 3M47 86c10-5 22-4 31 1" stroke="var(--white)" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/></g>
         </g>
         <g class="b-head">
-          <path d="M91 46C87 60 83 72 80 88L113 86C114 72 120 60 125 48Z" fill="var(--pink)"/>
-          <path d="M87 62L121 57L117 71L84 75Z" fill="var(--yellow)" style="mix-blend-mode:multiply"/>
-          <circle cx="108" cy="40" r="19" fill="var(--pink)"/>
-          <path d="M124 35L144 43L124 49Z" fill="var(--yellow)"/>
-          <circle cx="125" cy="37.500" r="3.4" fill="var(--white)"/>
-          <circle cx="111" cy="36" r="7" fill="var(--white)"/><circle cx="112.800" cy="36" r="3.4" fill="var(--ink)"/>
-          <ellipse class="b-lid" cx="111" cy="36" rx="7.600" ry="7.600" fill="var(--pink)"/>
+          <path d="M90 46C86 60 82 72 80 90l34-3c1-14 6-27 11-39z" fill="var(--pink)"/>
+          <path d="M86 61l35-5-3 10-34 5z" fill="var(--yellow)" style="mix-blend-mode:multiply"/><path d="M84 73l33-4-2 7-32 4z" fill="var(--blue)" style="mix-blend-mode:multiply"/>
+          <circle cx="108" cy="39" r="19.500" fill="var(--pink)"/>
+          <path d="M124 33l22 9-22 8z" fill="var(--yellow)"/><path d="M125 42h19" stroke="var(--ink)" stroke-width="1.600"/>
+          <circle cx="125.500" cy="36" r="3.600" fill="var(--white)"/>
+          <circle cx="110" cy="35" r="9.200" fill="var(--yellow)"/><circle cx="110" cy="35" r="6.800" fill="var(--white)"/>
+          <g class="b-pupil"><circle cx="111" cy="35" r="3.800" fill="var(--ink)"/><circle cx="112.300" cy="33.600" r="1.200" fill="var(--white)"/></g>
+          <ellipse class="b-lid" cx="110" cy="35" rx="9.800" ry="9.800" fill="var(--pink)"/>
         </g>
-        <text class="b-z" x="126" y="16">z</text><text class="b-z b-z2" x="136" y="8">z</text>
-      </g></g>
-    </svg>
+        <text class="b-z" x="126" y="14">z</text><text class="b-z b-z2" x="136" y="6">z</text>
+      </g></g></g>
+    </svg></div>
     <div id="say"></div>
   </div>
 
@@ -431,7 +559,8 @@ const $=s=>document.querySelector(s);
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const pick=a=>a[Math.floor(Math.random()*a.length)];
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const DAY=864e5;
+const DAY=864e5,GAP=56;
+const INK={p:'#FF4FA8',b:'#1466C8',y:'#FFDF1C',w:'#FAFAF5',i:'#142084'};
 
 /* ================= music ================= */
 // order in which written notes are introduced, and standard B-trumpet fingerings from written fis (54) to c3 (84)
@@ -506,26 +635,47 @@ function plan(){
   return{due,learn,fresh};
 }
 
-/* ================= sound ================= */
-const snd={ctx:null,
+/* ================= sound: everything is synthesised here, no samples ================= */
+const MOT={'0,0':[523.25,659.25],'1,0':[659.25,783.99],'-1,0':[587.33,440],'0,-1':[783.99,880],'0,1':[261.63,392]}; // two-note landing motif per room
+const snd={ctx:null,nb:null,sl:null,slOn:0,
   ensure(){try{if(!this.ctx){const A=window.AudioContext||window.webkitAudioContext;if(!A)return null;this.ctx=new A()}
     if(this.ctx.state==='suspended')this.ctx.resume();return this.ctx}catch(e){return null}},
-  tone(f,dur=1.1,vol=.15){const c=this.ensure();if(!c)return;const t=c.currentTime,g=c.createGain(),lp=c.createBiquadFilter();
-    lp.type='lowpass';lp.Q.value=1.4;lp.frequency.setValueAtTime(f*1.4,t);lp.frequency.exponentialRampToValueAtTime(Math.min(9000,f*6),t+.08);lp.frequency.exponentialRampToValueAtTime(f*3,t+dur);
-    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.035);g.gain.setValueAtTime(vol,t+Math.max(.05,dur-.12));g.gain.linearRampToValueAtTime(0,t+dur);
-    for(const d of[-5,5]){const o=c.createOscillator();o.type='sawtooth';o.frequency.value=f;o.detune.value=d;o.connect(lp);o.start(t);o.stop(t+dur+.05)}
-    lp.connect(g);g.connect(c.destination);ear.mute(dur*1000+260)},
-  blip(f,at,dur,type,vol){const c=this.ctx,t=c.currentTime+at,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.value=f;
-    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.012);g.gain.exponentialRampToValueAtTime(.0005,t+dur);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.02)},
-  fx(){return store.set.snd&&this.ensure()},
-  ok(){if(!this.fx())return;this.blip(784,0,.14,'triangle',.13);this.blip(1175,.09,.22,'triangle',.13);ear.mute(420)},
-  bad(){if(!this.fx())return;this.blip(117,0,.2,'sawtooth',.08);ear.mute(300)},
-  tick(){if(!this.fx())return;this.blip(1900,0,.03,'square',.04)},
-  swish(){const c=this.fx();if(!c)return;const n=Math.floor(c.sampleRate*.22),b=c.createBuffer(1,n,c.sampleRate),d=b.getChannelData(0);
-    for(let i=0;i<n;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/n,2);
-    const s=c.createBufferSource(),bp=c.createBiquadFilter(),g=c.createGain();s.buffer=b;bp.type='bandpass';bp.Q.value=.8;
-    bp.frequency.setValueAtTime(900,c.currentTime);bp.frequency.exponentialRampToValueAtTime(3400,c.currentTime+.2);g.gain.value=.07;
-    s.connect(bp);bp.connect(g);g.connect(c.destination);s.start();ear.mute(260)}
+  fx(){return store.set.snd?this.ensure():null},
+  noiseBuf(){const c=this.ctx;if(!this.nb){const n=c.sampleRate*2;this.nb=c.createBuffer(1,n,c.sampleRate);const d=this.nb.getChannelData(0);for(let i=0;i<n;i++)d[i]=Math.random()*2-1}return this.nb},
+  osc(type,f0,f1,at,dur,vol){const c=this.ctx,t=c.currentTime+at,o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f0,t);if(f1)o.frequency.exponentialRampToValueAtTime(f1,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+Math.min(.012,dur*.25));g.gain.exponentialRampToValueAtTime(.0004,t+dur);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+dur+.03)},
+  noise(type,f0,f1,at,dur,vol,q){const c=this.ctx,t=c.currentTime+at,s=c.createBufferSource(),bp=c.createBiquadFilter(),g=c.createGain();s.buffer=this.noiseBuf();s.loop=true;
+    bp.type=type;bp.Q.value=q||.8;bp.frequency.setValueAtTime(f0,t);if(f1)bp.frequency.exponentialRampToValueAtTime(f1,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(vol,t+dur*.3);g.gain.exponentialRampToValueAtTime(.0004,t+dur);s.connect(bp);bp.connect(g);g.connect(c.destination);s.start(t,Math.random()*1.5);s.stop(t+dur+.03)},
+  brass(f,at,dur,vol,bend){const c=this.ctx,t=c.currentTime+at,g=c.createGain(),lp=c.createBiquadFilter();
+    lp.type='lowpass';lp.Q.value=1.4;lp.frequency.setValueAtTime(f*1.4,t);lp.frequency.exponentialRampToValueAtTime(Math.min(9000,f*6),t+Math.min(.08,dur*.4));lp.frequency.exponentialRampToValueAtTime(f*(bend?1.15:3),t+dur);
+    g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.03);g.gain.setValueAtTime(vol,t+Math.max(.04,dur-.1));g.gain.linearRampToValueAtTime(0,t+dur);
+    for(const d of[-5,5]){const o=c.createOscillator();o.type='sawtooth';o.frequency.setValueAtTime(f,t);if(bend)o.frequency.exponentialRampToValueAtTime(f*bend,t+dur);o.detune.value=d;o.connect(lp);o.start(t);o.stop(t+dur+.05)}
+    lp.connect(g);g.connect(c.destination)},
+  tone(f,dur=1.1,vol=.15){if(!this.ensure())return;this.brass(f,0,dur,vol);ear.mute(dur*1000+260)},
+  fanfare(f){if(!this.fx())return;this.brass(f,0,.1,.1);this.brass(f*1.26,.1,.1,.1);this.brass(f*1.498,.2,.36,.12);this.osc('sine',f*4,0,.2,.3,.03);ear.mute(860)},
+  wah(f){if(!this.fx())return;this.brass(f,0,.2,.1,.97);this.brass(f*.94,.22,.4,.1,.9);ear.mute(880)},
+  ok(){if(!this.fx())return;this.osc('triangle',784,0,0,.14,.12);this.osc('triangle',1175,0,.09,.24,.12);ear.mute(420)},
+  bad(){this.wah(175)},
+  valve(down){if(!this.fx())return;this.osc('square',down?1500:2000,0,0,.014,.03);this.osc('sine',down?230:280,down?120:210,0,.06,.13);ear.mute(140)},
+  peel(fwd){if(!this.fx())return;this.noise('bandpass',fwd?500:2800,fwd?3000:600,0,.16,.09,1.6);ear.mute(300)},
+  pluck(f,at){this.osc('triangle',f,0,at,.32,.085);this.osc('sine',f*2,0,at,.16,.03)},
+  land(k){if(!this.fx())return;this.osc('sine',150,48,0,.17,.3);this.noise('highpass',2400,0,0,.04,.07);const m=MOT[k]||MOT['0,0'];this.pluck(m[0],.03);this.pluck(m[1],.12);ear.mute(520)},
+  bump(){if(!this.fx())return;this.osc('sine',110,62,0,.12,.25);this.noise('lowpass',500,0,0,.06,.08);ear.mute(240)},
+  flap(){if(!this.fx())return;this.noise('lowpass',900,280,0,.075,.06);ear.mute(140)},
+  chirp(at=0){if(!this.fx())return;this.osc('sine',1500,2500,at,.07,.045);this.osc('sine',1900,2900,at+.1,.06,.035);ear.mute(300)},
+  perch(){if(!this.fx())return;this.noise('lowpass',420,0,0,.05,.09);if(Math.random()<.6)this.chirp(.06);ear.mute(260)},
+  coo(){if(!this.fx())return;for(const[d,a,b,l]of[[0,372,318,.2],[.25,410,300,.32]]){this.osc('sine',a,b,d,l,.1);this.osc('sine',a*1.035,b*1.035,d,l,.07)}ear.mute(700)},
+  paper(){if(!this.fx())return;this.noise('highpass',1700,0,0,.07,.06);ear.mute(160)},
+  stamp(){if(!this.fx())return;this.osc('sine',140,58,0,.13,.3);this.noise('bandpass',1000,0,0,.045,.1);ear.mute(240)},
+  drawer(open){if(!this.fx())return;this.noise('bandpass',open?500:1900,open?1900:500,0,.17,.06,1.2);ear.mute(260)},
+  air(){if(!this.fx())return;this.noise('bandpass',1300,700,0,.26,.08,.5);ear.mute(340)},
+  blip(f,at=0,dur=.07,type='square'){if(!this.ctx||this.ctx.state!=='running'||!store.set.snd)return;this.osc(type,f,0,at,dur,.022)},
+  pop(){if(!this.fx())return;this.osc('sine',720,1150,0,.05,.05);ear.mute(120)},
+  // a noise bed whose loudness and brightness follow the wall's speed, so dragging sounds like paper sliding
+  slide(speed){const c=this.ctx;if(!c||c.state!=='running')return;const on=store.set.snd?clamp((speed-40)/2300,0,1):0;
+    if(!this.sl){if(on<=0)return;const s=c.createBufferSource(),bp=c.createBiquadFilter(),g=c.createGain();s.buffer=this.noiseBuf();s.loop=true;bp.type='bandpass';bp.Q.value=.7;g.gain.value=0;s.connect(bp);bp.connect(g);g.connect(c.destination);s.start();this.sl={bp,g}}
+    if(on===0&&this.slOn===0)return;this.slOn=on;this.sl.g.gain.setTargetAtTime(on*.1,c.currentTime,.05);this.sl.bp.frequency.setTargetAtTime(360+speed*.8,c.currentTime,.06);if(on>.02)ear.mute(180)}
 };
 
 /* ================= ear: microphone + McLeod pitch detection ================= */
@@ -613,39 +763,126 @@ const stage=$('#stage'),wall=$('#wall');
   }
 })();
 
-/* ================= bird ================= */
+/* ================= particles: confetti, rings, feathers, puffs ================= */
+const fx={cv:$('#fx'),cx:null,parts:[],dirty:false,
+  size(){const d=Math.min(2,devicePixelRatio||1);this.cv.width=Math.round(W*d);this.cv.height=Math.round(H*d);this.cx=this.cv.getContext('2d');this.cx.setTransform(d,0,0,d,0,0)},
+  add(p){if(!RM&&this.parts.length<300)this.parts.push(p)},
+  at(el){const a=el.getBoundingClientRect(),b=stage.getBoundingClientRect();return[a.left-b.left+a.width/2,a.top-b.top+a.height/2]},
+  burst(x,y,n=28,pow=560,cols='pybw'){for(let i=0;i<n;i++){const a=Math.random()*6.283,s=pow*(.3+Math.random()*.8);
+    this.add({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-pow*.4,g:1400,drag:1.7,rot:Math.random()*6,vr:(Math.random()-.5)*16,s:6+Math.random()*10,sh:i%5,c:INK[cols[i%cols.length]],life:.9+Math.random()*.8,max:1.7})}},
+  ring(x,y,c,r0,r1,life=.55,lw=5,delay=0){this.add({sh:9,x,y,c,r0,r1,life,max:life,lw,delay})},
+  feathers(x,y,n,dir){for(let i=0;i<n;i++)this.add({x,y,vx:(Math.random()-.5)*170-dir*70,vy:-50-Math.random()*90,g:230,drag:2.4,rot:Math.random()*6,vr:(Math.random()-.5)*5,s:9+Math.random()*5,sh:5,c:i%2?INK.p:INK.b,life:1.3+Math.random()*.7,max:2,sway:Math.random()*6})},
+  dust(x,y){for(let i=0;i<6;i++)this.add({x:x+(i-2.5)*6,y,vx:(i-2.5)*52,vy:-20-Math.random()*36,g:70,drag:3.2,s:4+Math.random()*4,sh:0,c:INK.w,life:.42,max:.42})},
+  puffs(x0,y0,x1,y1){for(let i=0;i<8;i++){const t=.4+Math.random()*.25;this.add({sh:8,x:x0,y:y0+(Math.random()-.5)*18,vx:(x1-x0)/t,vy:(y1-y0)/t+(Math.random()-.5)*90,g:0,drag:0,s:5+Math.random()*9,c:INK.w,life:t,max:t,delay:i*.03})}},
+  frame(dt){const c=this.cx,P=this.parts;if(!c)return;
+    if(!P.length){if(this.dirty){c.clearRect(0,0,W,H);this.dirty=false}return}
+    c.clearRect(0,0,W,H);this.dirty=true;
+    for(let i=P.length-1;i>=0;i--){const p=P[i];if(p.delay>0){p.delay-=dt;continue}p.life-=dt;if(p.life<=0){P.splice(i,1);continue}
+      const k=p.life/p.max;
+      if(p.sh===9){const e=1-k*k;c.globalAlpha=Math.min(1,k*1.7);c.strokeStyle=p.c;c.lineWidth=p.lw*(.35+k*.65);c.setLineDash([p.lw*.8,p.lw*1.15]);
+        c.beginPath();c.arc(p.x,p.y,p.r0+(p.r1-p.r0)*e,0,6.283);c.stroke();c.setLineDash([]);continue}
+      p.vy+=p.g*dt;const dr=Math.exp(-p.drag*dt);p.vx*=dr;p.vy*=dr;p.x+=p.vx*dt;p.y+=p.vy*dt;if(p.sway)p.x+=Math.sin(p.life*5+p.sway)*46*dt;p.rot=(p.rot||0)+(p.vr||0)*dt;
+      c.globalAlpha=Math.min(1,k*3);c.fillStyle=c.strokeStyle=p.c;c.save();c.translate(p.x,p.y);c.rotate(p.rot);const s=p.s;c.beginPath();
+      switch(p.sh){
+        case 0:c.arc(0,0,s*.5,0,6.283);c.fill();break;
+        case 1:c.moveTo(0,-s*.62);c.lineTo(s*.58,s*.44);c.lineTo(-s*.58,s*.44);c.fill();break;
+        case 2:c.fillRect(-s*.8,-s*.2,s*1.6,s*.4);break;
+        case 3:c.lineWidth=s*.26;c.lineCap='round';c.moveTo(-s,0);c.quadraticCurveTo(-s*.5,-s*.8,0,0);c.quadraticCurveTo(s*.5,s*.8,s,0);c.stroke();break;
+        case 4:c.arc(0,0,s*.6,0,3.1416);c.fill();break;
+        case 5:c.ellipse(0,0,s,s*.34,0,0,6.283);c.fill();c.strokeStyle=INK.w;c.lineWidth=1.2;c.beginPath();c.moveTo(-s,0);c.lineTo(s,0);c.stroke();break;
+        case 8:c.lineWidth=2.5;c.arc(0,0,s*(1.7-k),0,6.283);c.stroke();break;}
+      c.restore()}
+    c.globalAlpha=1}
+};
+const FLIP=[{transform:'perspective(900px) rotateY(-105deg) rotate(-1.2deg)',opacity:.2},{transform:'perspective(900px) rotateY(0deg) rotate(-1.2deg)',opacity:1}];
+function pop(el){if(RM||!el||!el.animate)return;el.animate([{scale:'.84'},{scale:'1.08'},{scale:'1'}],{duration:240,easing:'ease-out'})}
+
+/* ================= bird: flies between perches on an arc, idles, watches the pointer ================= */
 const bird={el:$('#bird'),sayEl:$('#say'),base:'idle',until:0,sayT:0,lastAct:performance.now(),mood:'idle',
-  set(m,ms){this.lastAct=performance.now();if(ms){this.until=performance.now()+ms;this.apply(m)}else if(performance.now()>=this.until)this.apply(m)},
+  x:-90,y:-90,w:104,face:1,tilt:0,fl:null,lift:0,liftT:0,landT:0,cx:0,ready:false,ptr:null,ex:0,ey:0,last:'',pf:0,
+  nextAct:performance.now()+5200,actEnd:0,lookBack:0,
+  set(m,ms){this.lastAct=performance.now();if(this.fl)return;if(ms){this.until=performance.now()+ms;this.apply(m)}else if(performance.now()>=this.until)this.apply(m)},
   apply(m){if(this.mood!==m){this.mood=m;this.el.dataset.mood=m}},
   say(t,ms=1600){if(!t)return;this.sayEl.innerHTML=t;this.sayEl.classList.add('on');clearTimeout(this.sayT);this.sayT=setTimeout(()=>this.sayEl.classList.remove('on'),ms)},
-  puff(v){this.el.style.setProperty('--puff',v.toFixed(2))},
-  frame(now){if(this.until&&now>=this.until){this.until=0;this.apply(this.base)}
-    if(!this.until&&this.mood===this.base&&now-this.lastAct>50000)this.apply('sleep')},
+  puff(v){v=Math.round(v*50)/50;if(v!==this.pf){this.pf=v;this.el.style.setProperty('--puff',v)}},
   wake(){this.lastAct=performance.now();if(this.mood==='sleep')this.apply(this.base)},
-  place(snap){const r=cur.el.querySelector('.perch');if(!r)return;const a=r.getBoundingClientRect(),b=cur.el.getBoundingClientRect();
-    const hubby=cur===hub,w=hubby?clamp(cur.el.querySelector('.hub-art').offsetWidth*.42,70,170):clamp(Math.min(W,H)*.2,78,112);
-    const x=a.left-b.left,y=a.top-b.top;
-    if(snap)this.el.classList.add('snap');
-    this.el.style.setProperty('--bw',w+'px');this.el.style.setProperty('--bx',(x-w/2)+'px');this.el.style.setProperty('--by',(y-w*140/150*.95)+'px');
-    this.el.classList.toggle('flip',x>W*.6);
-    if(snap)requestAnimationFrame(()=>this.el.classList.remove('snap'))}
+  act(a,ms){if(this.fl||RM)return;this.el.dataset.act=a;this.actEnd=performance.now()+ms;this.nextAct=this.actEnd+2500},
+  goal(){const p=cur.perchPos;if(!p)return null;
+    const w=cur===hub?clamp(cur.el.querySelector('.scene').offsetWidth*.3,62,150):clamp(Math.min(W,H)*.2,78,112);
+    return{x:p.x,y:p.y,w,face:cur.face||(p.x>W*.6?-1:1)}},
+  place(snap){const t=this.goal();if(!t)return;
+    if(this.lookBack){this.lookBack=0}
+    if(snap||RM||!this.ready){this.fl=null;this.x=t.x;this.y=t.y;this.w=t.w;this.face=t.face;this.tilt=0;this.ready=true;return}
+    const x0=this.x+(this.fl?0:this.cx),y0=this.y-(this.fl?0:this.lift),d=Math.hypot(t.x-x0,t.y-y0);
+    if(d<6){this.w=t.w;this.face=t.face;return}
+    this.fl={x0,y0,w0:this.w,x1:t.x,y1:t.y,w1:t.w,f1:t.face,t:-.16,dur:clamp(d*.5+430,600,1020)/1000,arc:clamp(d*.36,54,210),flap:0};
+    this.lift=0;this.cx=0;this.x=x0;this.y=y0;if(Math.abs(t.x-x0)>30)this.face=t.x>x0?1:-1;
+    delete this.el.dataset.act;this.actEnd=0;this.until=0;this.apply('fly');
+    fx.feathers(x0,y0-this.w*.45,3,this.face)},
+  frame(now,dt){
+    if(this.until&&now>=this.until&&!this.fl){this.until=0;this.apply(this.base)}
+    if(!this.until&&!this.fl&&this.mood===this.base&&now-this.lastAct>50000)this.apply('sleep');
+    let sx=1,sy=1;const f=this.fl;
+    if(f){f.t+=dt/f.dur;
+      if(f.t<0){const k=1+f.t/.16;sy=1-.2*k;sx=1+.15*k}
+      else{const t=Math.min(1,f.t),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+        const X=f.x0+(f.x1-f.x0)*e,Y=f.y0+(f.y1-f.y0)*e-Math.sin(Math.PI*e)*f.arc,vx=X-this.x,vy=Y-this.y;
+        if(Math.abs(vx)+Math.abs(vy)>.15)this.tilt+=(clamp(Math.atan2(vy,Math.abs(vx)+.001)*57.3*.75,-40,40)-this.tilt)*.3;
+        this.x=X;this.y=Y;this.w=f.w0+(f.w1-f.w0)*e;sx=.94;sy=1.07;
+        f.flap-=dt;if(f.flap<=0&&t<.9){snd.flap();f.flap=.15}
+        if(f.t>=1){this.fl=null;this.face=f.f1;this.tilt=0;this.landT=.46;this.apply(this.base);this.lastAct=now;this.nextAct=now+2600+Math.random()*3000;
+          fx.dust(f.x1,f.y1);snd.perch()}}
+    }else{
+      this.cx=clamp((cam.rx*(W+GAP)-cam.px)*.13,-70,70);
+      this.tilt+=(clamp(cam.vx*.007,-18,18)*this.face-this.tilt)*Math.min(1,dt*12);
+      this.lift+=(this.liftT-this.lift)*Math.min(1,dt*9);
+      if(this.landT>0){this.landT-=dt;const k=Math.max(0,this.landT/.46);sy=1-.26*k*Math.cos((1-k)*11);sx=2-sy}
+      if(!this.until&&(this.mood==='idle'||this.mood==='listen')&&now>this.nextAct&&!cam.drag&&!RM){
+        const a=pick(['peck','peck','hop','wag','preen','look']);this.nextAct=now+3400+Math.random()*5200;
+        if(a==='look'){this.face*=-1;this.lookBack=now+1200}else{this.el.dataset.act=a;this.actEnd=now+{peck:720,hop:440,wag:520,preen:1120}[a]}}
+      if(this.actEnd&&now>this.actEnd){this.actEnd=0;delete this.el.dataset.act}
+      if(this.lookBack&&now>this.lookBack){this.lookBack=0;this.face*=-1}
+    }
+    const h=this.w*140/150;
+    if(this.ptr&&!f){const dx=this.ptr.x-(this.x+this.face*this.w*.22),dy=this.ptr.y-(this.y-h*.7),d=Math.hypot(dx,dy)||1;this.ex=dx/d*2.3*this.face;this.ey=dy/d*1.9}
+    const tx=(this.x+(f?0:this.cx)-this.w/2).toFixed(1),ty=(this.y-(f?0:this.lift)-h*.95).toFixed(1);
+    const s=tx+'|'+ty+'|'+this.w.toFixed(0)+'|'+this.face+'|'+this.tilt.toFixed(1)+'|'+sx.toFixed(2)+'|'+sy.toFixed(2)+'|'+this.ex.toFixed(1)+'|'+this.ey.toFixed(1);
+    if(s!==this.last){this.last=s;const st=this.el.style;st.transform=`translate3d(${tx}px,${ty}px,0)`;st.width=this.w.toFixed(0)+'px';
+      st.setProperty('--face',this.face);st.setProperty('--tilt',this.tilt.toFixed(1)+'deg');st.setProperty('--sx',sx.toFixed(2));st.setProperty('--sy',sy.toFixed(2));
+      st.setProperty('--ex',this.ex.toFixed(1));st.setProperty('--ey',this.ey.toFixed(1));this.el.classList.toggle('flip',this.x>W*.6)}
+  }
 };
 
 /* ================= rooms ================= */
-function stampOn(el,big,small){el.querySelector('b').innerHTML=big;el.querySelector('i').textContent=small;el.classList.remove('on');void el.offsetWidth;el.classList.add('on')}
+function stampOn(el,big,small){el.querySelector('b').innerHTML=big;el.querySelector('i').textContent=small;el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+  setTimeout(()=>{snd.stamp();if(!RM)lag.vy+=170},170)}
 function shake(el){if(RM||!el.animate)return;el.animate([{translate:'0'},{translate:'-12px 0'},{translate:'10px 0'},{translate:'-7px 0'},{translate:'4px 0'},{translate:'0'}],{duration:340})}
 
-/* ---- hub ---- */
-const hub={el:$('#r-hub'),
-  enter(){this.refresh();bird.base='idle'},
-  refresh(){const p=plan(),n=p.due.length+p.learn.length,f=p.fresh.length,seen=Object.keys(store.cards).length;let h,s;
-    if(n+f===0){h='na dziś zagrane';s=seen>=ORDER.length?'Znasz już wszystkie nuty od fis do c³.':'Jutro wracają powtórki i dochodzą nowe nuty.'}
-    else if(n===0){h=`${f} ${pl(f,'nowa nuta','nowe nuty','nowych nut')}`;s=seen?'Powtórki zagrane, czas na coś nowego.':'Zaczynasz od '+p.fresh.map(m=>nameTxt(spell(m))).join(', ').replace(/, ([^,]*)$/,' i $1')+'.'}
-    else{h=`${n+f} ${pl(n+f,'nuta czeka','nuty czekają','nut czeka')}`;s=f?`W tym ${f} ${pl(f,'nowa','nowe','nowych')}.`:'Same powtórki.'}
-    const live=store.last===dayKey()||store.last===dayKey(Date.now()-DAY);
-    if(live&&store.streak>1)s+=` ${store.streak}. dzień z rzędu.`;
-    $('#hubCount').textContent=h;$('#hubSub').innerHTML=s;$('#edgeNuty').dataset.n=n+f?String(n+f):''},
-  tap(t){if(t.closest('#bird')){bird.set('win',800);bird.say(pick(['gruu','gramy?','w prawo są nuty']),1500)}}
+/* ---- hub: a looping scene where the pigeon keeps trying the four games on its computer ---- */
+const hub={el:$('#r-hub'),face:-1,g:{s:'menu',t:0,i:0},
+  init(){this.mg=$('#mg');this.tiles=[...this.mg.querySelectorAll('.mt')];this.curEl=this.mg.querySelector('.cur')},
+  clear(){this.tiles.forEach(t=>t.classList.remove('open','hit'));this.mg.classList.remove('fail','win')},
+  enter(){bird.base='idle';this.clear();this.g={s:'menu',t:performance.now()+1400,i:0}},
+  frame(f,now){const g=this.g;if(RM||now<g.t||bird.fl)return;
+    if(g.s==='menu'){g.i=(g.i+1+Math.floor(Math.random()*3))%4;this.curEl.style.left=(g.i%2?70:24)+'%';this.curEl.style.top=(g.i>1?72:26)+'%';g.s='move';g.t=now+850}
+    else if(g.s==='move'){this.tiles[g.i].classList.add('hit');bird.act('peck',700);snd.blip(880);g.s='click';g.t=now+260}
+    else if(g.s==='click'){this.tiles[g.i].classList.remove('hit');this.tiles[g.i].classList.add('open');snd.blip(440,0,.05);snd.blip(660,.06,.05);g.s='try';g.t=now+1500}
+    else if(g.s==='try'){const ok=Math.random()<.2;this.mg.classList.add(ok?'win':'fail');
+      if(ok){bird.set('win',900);snd.blip(660);snd.blip(880,.09);snd.blip(1320,.18,.14);const[x,y]=fx.at(this.mg);fx.burst(x,y,16,320)}
+      else{bird.set('bad',800);snd.blip(120,0,.26,'sawtooth');if(Math.random()<.4)fx.feathers(bird.x,bird.y-bird.w*.5,2,bird.face)}
+      g.s='res';g.t=now+1150}
+    else{this.clear();g.s='menu';g.t=now+650}},
+  tap(t){
+    if(t.closest('#bird')){bird.set('win',800);snd.coo();const[x,y]=fx.at(bird.el);fx.burst(x,y,8,260);return}
+    const v=t.closest('[data-valve]'),b=t.closest('[data-bell]');if(!v&&!b)return;
+    const svg=this.el.querySelector('.tpt');
+    if(v){const n=+v.dataset.valve,c=svg.querySelector(`.cap[data-c="${n}"]`);c.classList.add('down');setTimeout(()=>c.classList.remove('down'),240);
+      snd.valve(true);snd.tone(hz([65,66,64][n-1]),.42,.13)}
+    else snd.tone(hz(67),.6,.14);
+    svg.classList.remove('toot');void svg.getBoundingClientRect();svg.classList.add('toot');
+    const r=svg.querySelector('[data-bell]').getBoundingClientRect(),s=stage.getBoundingClientRect(),x=r.right-s.left,y=r.top-s.top+r.height/2;
+    for(let i=0;i<3;i++)fx.ring(x,y,[INK.p,INK.b,INK.i][i],14,70+i*22,.6,5,i*.09);
+    bird.wake();bird.set('hear',700);if(!RM)lag.vx-=90}
 };
 
 /* ---- nuty: fiszki z nasłuchem ---- */
@@ -660,12 +897,13 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
     this.status()},
   leave(){this.att=null;this.hold=0;this.rings(0,-1);this.ghost(null)},
   onEar(){this.status()},
-  status(t){if(t!=null){this.heard.innerHTML=t;return}
+  status(t){const was=this.heard.textContent;this.status_(t);if(this.heard.textContent!==was)pop(this.heard)},
+  status_(t){if(t!=null){this.heard.innerHTML=t;return}
     this.heard.textContent=this.fin||!this.cur?'':ear.status==='on'?'zagraj tę nutę':ear.status==='asking'?'pozwól na mikrofon':'zagraj, a gdy trafisz, przytrzymaj kartę'},
   rings(good,time){this.rg.style.strokeDashoffset=this.CG*(1-clamp(good,0,1));this.rt.classList.toggle('on',time>=0);
     if(time>=0){const C=2*Math.PI*45;this.rt.style.strokeDasharray=`${C*clamp(time,0,1)} ${C}`}},
   bars(){const left=this.queue.length+(this.cur?1:0),n=Math.min(26,this.done+left);let h='';
-    for(let i=0;i<n;i++)h+=`<i class="${i<this.done?'d':i===this.done&&this.cur?'now':''}"></i>`;$('#bars').innerHTML=h},
+    for(let i=0;i<n;i++)h+=`<i class="${i<this.done?'d'+(i===this.done-1&&this.done!==this.barsN?' new':''):i===this.done&&this.cur?'now':''}"></i>`;this.barsN=this.done;$('#bars').innerHTML=h},
   next(first){
     this.closeHint();this.ghost(null);this.rings(0,-1);$('#stamp').classList.remove('on');
     const m=this.queue.shift();
@@ -674,8 +912,8 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
     this.fails=0;this.usedHint=false;this.att=null;this.hold=0;this.react=null;this.shown=performance.now();this.lock=false;this.fin=false;
     const n=noteHTML(this.cur,200);this.tgt.innerHTML=n.html;this.rg.setAttribute('cy',n.y);this.rt.setAttribute('cy',n.y);
     $('#deck').hidden=false;$('#done').hidden=true;this.hint.hidden=false;$('#skipTab').querySelector('span').textContent='nie wiem';
-    this.bars();this.status();ear.mute(350);cam.kick=RM?0:11;
-    if(!first&&!RM&&this.card.animate)this.card.animate([{transform:'translateY(26px) scale(.93) rotate(2deg)',opacity:.4},{transform:'rotate(-1.2deg)',opacity:1}],{duration:300,easing:'cubic-bezier(.2,1.3,.4,1)'});
+    this.bars();this.status();ear.mute(350);cam.kick=RM?0:11;if(!first)snd.paper();
+    if(!first&&!RM&&this.card.animate)this.card.animate(FLIP,{duration:420,easing:'cubic-bezier(.2,1.2,.4,1)'});
     if(this.fresh){this.openHint();if(cur===this)bird.say('nowa nuta',1700)}
   },
   finish(){this.cur=null;this.fin=true;$('#deck').hidden=true;$('#done').hidden=false;this.hint.hidden=true;this.bars();this.status('');
@@ -685,7 +923,7 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
     $('#doneP').textContent=(this.done?`${this.done} ${pl(this.done,'zagranie','zagrania','zagrań')}, z tego ${this.clean} czysto za pierwszym razem. `:'')+
       `Znasz ${seen} z ${ORDER.length} nut. Jutro ${pl(tomorrow,'wraca','wracają','wraca')} ${tomorrow}.`;
     $('#skipTab').querySelector('span').textContent='dogrywka';
-    if(cur===this){bird.set('win',1500);bird.say('koniec na dziś',2200)}},
+    if(cur===this){bird.set('win',1500);bird.say('koniec na dziś',2200);if(this.done){const[x,y]=fx.at($('#done'));fx.burst(x,y-40,46,720);snd.fanfare(349.23)}}},
   extra(){const seen=Object.keys(store.cards).map(Number);
     const weak=seen.sort((a,b)=>(store.cards[a].e-store.cards[a].l*.2)-(store.cards[b].e-store.cards[b].l*.2)).slice(0,4);
     const fresh=ORDER.filter(m=>!store.cards[m]).slice(0,2);
@@ -696,7 +934,9 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
   frame(f,now,dt){
     if(!this.cur||this.lock)return;
     if(ear.status!=='on'){ // no microphone: the player confirms by holding the card
-      if(this.hold){const p=(now-this.hold)/900;this.rings(p,-1);bird.set('good');bird.puff(clamp(p,0,1));if(p>=1){this.hold=0;this.pass(true)}}
+      if(this.hold){const p=(now-this.hold)/900;this.rings(p,-1);bird.set('good');bird.puff(clamp(p,0,1));
+        if(now-(this.lastRing||0)>260){this.lastRing=now;const[x,y]=fx.at(this.tgt.querySelector('.head'));fx.ring(x,y,INK.i,24,62,.5,3.5)}
+        if(p>=1){this.hold=0;this.pass(true)}}
       return}
     const a=this.att,voiced=f&&f.voiced;
     if(voiced){
@@ -705,6 +945,7 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
       if(!this.att){this.att={t0:now,good:0,bad:0,sil:0,wrong:{}};if(this.react==null)this.react=now-this.shown}
       const t=this.att;t.sil=0;if(hit)t.good+=dt;else{t.bad+=dt;t.wrong[m]=(t.wrong[m]||0)+dt}
       bird.set(hit?'good':'hear');bird.puff(hit?clamp(t.good/NEED,0,1):0);
+      if(hit&&now-(this.lastRing||0)>300){this.lastRing=now;const[x,y]=fx.at(this.tgt.querySelector('.head'));fx.ring(x,y,INK.i,24,62,.5,3.5)}
       if(now-(this.lastTxt||0)>160){this.lastTxt=now;this.status(hit?'tak, trzymaj':`słyszę ${nameTxt(spell(m))}, ${m<this.cur.m?'za nisko':'za wysoko'}`)}
     }else if(a){a.sil+=dt;if(a.sil>.25)this.ghost(null)}
     else{bird.set(bird.base);bird.puff(0)}
@@ -720,7 +961,8 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
     const g=!first?1:(!manual&&this.react!=null&&this.react<3000?3:2);
     grade(this.cur.m,g,this.queue);this.done++;if(first)this.clean++;markToday();
     this.rings(1,-1);this.ghost(null);stampOn($('#stamp'),nameHTML(this.cur),first?'czysto':'jest');this.status('');
-    snd.ok();bird.puff(0);bird.set('win',1300);bird.say(first?pick(['czysto!','tak jest','równo','ładnie']):pick(['mamy to','jest','następnym razem bez ściągi']),1300);
+    const[nx,ny]=fx.at(this.tgt.querySelector('.head'));fx.burst(nx,ny,first?36:18,first?620:430);fx.ring(nx,ny,INK.i,30,170,.65,6);fx.ring(nx,ny,INK.y,20,120,.55,10,.08);
+    snd.fanfare(hz(this.cur.m));bird.puff(0);bird.set('win',1300);bird.say(first?pick(['czysto!','tak jest','równo','ładnie']):pick(['mamy to','jest','następnym razem bez ściągi']),1300);
     cam.kick=RM?0:-9;try{navigator.vibrate&&navigator.vibrate(18)}catch(e){}
     setTimeout(()=>this.out('up'),950)},
   fail(){const t=this.att;this.att=null;this.fails++;this.rings(0,-1);
@@ -728,10 +970,10 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
     shake(this.card);snd.bad();bird.puff(0);bird.set('bad',900);
     bird.say(w==null?'jeszcze raz':w<this.cur.m?'wyżej':'niżej',1500);
     this.status(w==null?'za krótko, jeszcze raz':`to było ${nameTxt(spell(w))}, zagraj ${w<this.cur.m?'wyżej':'niżej'}`);
-    if(this.fails>=2&&!this.hintOpen)this.openHint()},
+    if(this.fails>=2&&!this.hintOpen){this.openHint();snd.drawer(true)}},
   skip(){if(!this.cur||this.lock)return;this.lock=true;grade(this.cur.m,0,this.queue);this.done++;markToday();
     this.openHint();bird.set('look',900);bird.say('wróci za chwilę',1500);this.status(`to ${nameTxt(this.cur)}, ${howTxt(fing(this.cur.m))}`);
-    snd.tone(hz(this.cur.m),.9);setTimeout(()=>this.out('left'),1500)},
+    snd.tone(hz(this.cur.m),.9);setTimeout(()=>{snd.peel(true);this.out('left')},1500)},
   out(how){const go=()=>{this.card.style.translate='';this.card.style.rotate='';this.next()};
     if(RM||!this.card.animate){go();return}
     const to=how==='left'?'translate(-130vw,6vh) rotate(-20deg)':'translate(-30vw,-120vh) rotate(-26deg)';
@@ -740,15 +982,15 @@ const nuty={el:$('#r-nuty'),listens:true,edges:['E','S','N'],queue:[],cur:null,f
     $('#hintName').innerHTML=nameHTML(this.cur);$('#hintValves').innerHTML=valvesHTML(fing(this.cur.m));$('#hintHow').textContent=howTxt(fing(this.cur.m));
     $('#hintGrip').textContent='schowaj w dół';this.hint.style.setProperty('--p',1);this.lift()},
   closeHint(){this.hintOpen=false;$('#hintGrip').textContent='podpowiedź';this.hint.style.setProperty('--p',0);this.lift()},
-  lift(){bird.el.style.setProperty('--lift',cur===this&&this.hintOpen?(this.hint.offsetHeight-30)+'px':'0px')},
+  lift(){bird.liftT=cur===this&&this.hintOpen&&!this.hint.hidden?this.hint.offsetHeight-30:0},
   edges_ok(dir){return dir!=='N'||this.hintOpen},
   edgeDrag(dir,a){
     if(dir==='S'&&!this.hintOpen&&this.cur){this.hint.classList.toggle('live',a>0);this.hint.style.setProperty('--p',a*.9)}
     if(dir==='N'&&this.hintOpen){this.hint.classList.toggle('live',a>0);this.hint.style.setProperty('--p',1-a*.9)}
     if(dir==='E'&&(this.cur||this.fin)&&!this.lock){const el=this.fin?$('#done'):this.card;el.style.translate=`${-a*70}px 0`;el.style.rotate=`${-a*5}deg`}},
   edge(dir){this.hint.classList.remove('live');
-    if(dir==='S'){if(this.hintOpen)this.closeHint();else this.openHint()}
-    if(dir==='N'&&this.hintOpen)this.closeHint();
+    if(dir==='S'&&this.cur){snd.drawer(!this.hintOpen);if(this.hintOpen)this.closeHint();else this.openHint()}
+    if(dir==='N'&&this.hintOpen){snd.drawer(false);this.closeHint()}
     if(dir==='E'){if(this.fin){$('#done').style.translate='';$('#done').style.rotate='';this.extra()}else this.skip()}},
   tap(t){if(!this.cur||this.lock)return;
     if(t.closest('#bird')||t.closest('#card')){this.usedHint=true;snd.tone(hz(this.cur.m),1.1);bird.say('tak to brzmi',1200)}},
@@ -765,14 +1007,15 @@ const palce={el:$('#r-palce'),edges:[],v:[0,0,0],streak:0,wrongs:0,cur:null,lock
   pool(){const seen=Object.keys(store.cards).map(Number);return seen.length>=5?seen:ORDER.slice(0,8)},
   next(){const p=this.pool().filter(m=>!this.cur||m!==this.cur.m);const m=pick(p);this.cur=spell(m,Math.random()<.4);
     this.tgt.innerHTML=noteHTML(this.cur,200).html;$('#pName').innerHTML=nameHTML(this.cur);$('#pStamp').classList.remove('on');
-    this.v=[0,0,0];this.wrongs=0;this.lock=false;this.paint();cam.kick=RM?0:8},
+    this.v=[0,0,0];this.wrongs=0;this.lock=false;this.paint();cam.kick=RM?0:8;pop($('#pName'));if(cur===this){snd.paper();if(!RM&&$('#pCard').animate)$('#pCard').animate(FLIP,{duration:420,easing:'cubic-bezier(.2,1.2,.4,1)'})}},
   paint(){this.btns.forEach((b,i)=>{b.classList.toggle('on',!!this.v[i]);b.setAttribute('aria-pressed',!!this.v[i]);
     b.classList.toggle('want',this.wrongs>=2&&fing(this.cur.m).includes(i+1))})},
-  toggle(i){if(this.lock)return;this.v[i]^=1;snd.tick();this.paint();bird.wake()},
+  toggle(i){if(this.lock)return;this.v[i]^=1;snd.valve(!!this.v[i]);this.paint();bird.wake()},
   score(t){$('#pScore').textContent=t||(this.streak?`seria ${this.streak}, rekord ${Math.max(store.fb,this.streak)}`:'ustaw wentyle i dmuchnij')},
   blow(){if(this.lock||!this.cur)return;const combo=this.v.map((x,i)=>x?i+1:'').join('')||'0',want=fing(this.cur.m);
     const snds=combo==='3'?'12':combo;
-    if(snds===want){this.lock=true;this.streak++;if(this.streak>store.fb){store.fb=this.streak}markToday();
+    snd.air();{const[x0,y0]=fx.at($('#pBlow')),[x1,y1]=fx.at($('#pCard'));fx.puffs(x0,y0,x1,y1)}
+    if(snds===want){const[bx,by]=fx.at($('#pStamp'));fx.burst(bx,by,22,460);snd.chirp(.5);this.lock=true;this.streak++;if(this.streak>store.fb){store.fb=this.streak}markToday();
       stampOn($('#pStamp'),want==='0'?'0':want.split('').join('+'),'dobrze');snd.tone(hz(this.cur.m),.6);
       bird.set('win',1000);bird.say(combo==='3'?'działa, ale lepiej 1 i 2':pick(['tak!','dobrze','zgadza się']),1200);this.score();setTimeout(()=>this.next(),1000)}
     else{this.streak=0;this.wrongs++;let near=null;for(let m=54;m<=84;m++)if(fing(m)===snds&&(near==null||Math.abs(m-this.cur.m)<Math.abs(near-this.cur.m)))near=m;
@@ -797,7 +1040,7 @@ const stroj={el:$('#r-stroj'),listens:true,edges:['E','W'],sel:67,live:false,las
   enter(){bird.base='listen';this.draw(this.sel,0,false,true)},
   onEar(){this.draw(this.sel,0,false,true)},
   draw(m,cents,live,force){
-    if(force||m!==this.dm){this.dm=m;const sp=spell(m);$('#sName').innerHTML=nameHTML(sp);this.tgt.innerHTML=noteHTML(sp,200).html;
+    if(force||m!==this.dm){if(m!==this.dm)pop($('#sName'));this.dm=m;const sp=spell(m);$('#sName').innerHTML=nameHTML(sp);this.tgt.innerHTML=noteHTML(sp,200).html;
       $('#sValves').innerHTML=m>=54&&m<=84?valvesHTML(fing(m)):''}
     this.live=live;$('#sMov').style.setProperty('--c',(clamp(cents,-50,50)*($('#sMov').parentNode.offsetWidth-26)/100).toFixed(1));
     const say=live?(Math.abs(cents)<8?'czysto':cents<0?`za nisko o ${Math.round(-cents)}`:`za wysoko o ${Math.round(cents)}`)
@@ -827,12 +1070,13 @@ const dlugie={el:$('#r-dlugie'),listens:true,edges:['E','W'],sel:67,run:null,pts
     if(on){if(!this.run){this.run={t:0,gap:0,sum:0,n:0};this.pts=[]}
       const r=this.run,c=mic?(f.midi-this.sel)*100:0;r.t+=dt;r.gap=0;r.sum+=Math.abs(c);r.n++;this.pts.push(r.t,c);
       this.clock(r.t);bird.set('good');bird.puff(clamp(r.t/20,0,1));bird.wake();this.paint();
+      const sec=Math.floor(r.t);if(sec!==r.sec){r.sec=sec;pop($('#dClock'));this.el.style.setProperty('--grow',clamp(r.t/25,0,1).toFixed(2))}
       if(now-(this.lt||0)>300){this.lt=now;$('#dSay').textContent=!mic?'trzymaj':Math.abs(c)<12?'równo':c<0?'odrobinę za nisko':'odrobinę za wysoko'}}
     else if(this.run){this.run.gap+=dt;if(this.run.gap>.45)this.end()}
     else if(mic&&f&&f.voiced&&now-(this.lt||0)>300){this.lt=now;const m=Math.round(f.midi);$('#dSay').innerHTML=`słyszę ${nameTxt(spell(m))}, ${m<this.sel?'za nisko':'za wysoko'}`;bird.set('hear')}},
-  end(){const r=this.run;this.run=null;bird.puff(0);if(r.t<1){this.say();bird.set(bird.base);return}
+  end(){const r=this.run;this.run=null;bird.puff(0);this.el.style.setProperty('--grow',0);if(r.t<1){this.say();bird.set(bird.base);return}
     const best=store.best[this.sel]||0,avg=r.n?r.sum/r.n:0,tt=r.t.toFixed(1).replace('.',',');
-    if(r.t>best){store.best[this.sel]=Math.round(r.t*10)/10;save();snd.ok();bird.set('win',1400);bird.say('nowy rekord!',1800);cam.kick=RM?0:12}
+    if(r.t>best){store.best[this.sel]=Math.round(r.t*10)/10;save();snd.fanfare(hz(this.sel));bird.set('win',1400);bird.say('nowy rekord!',1800);cam.kick=RM?0:12;const[x,y]=fx.at($('#dClock'));fx.burst(x,y,40,680)}
     else{bird.set(bird.base);bird.say(pick(['dobry oddech','jeszcze raz?','ładnie']),1500)}
     markToday();this.say(ear.status==='on'?`${tt} s, średnio ${Math.round(avg)} centów od środka`:`${tt} s`)},
   paint(){const x=this.cx,w=this.cw,h=this.ch;if(!w)return;x.clearRect(0,0,w,h);const mid=h/2,sc=h/2/55;
@@ -849,42 +1093,69 @@ const dlugie={el:$('#r-dlugie'),listens:true,edges:['E','W'],sel:67,run:null,pts
 };
 
 const rooms={'0,0':hub,'1,0':nuty,'-1,0':palce,'0,-1':stroj,'0,1':dlugie};
-for(const k in rooms){const[x,y]=k.split(',').map(Number);rooms[k].el.style.left=x*100+'%';rooms[k].el.style.top=y*100+'%';rooms[k].rid=k}
+for(const k in rooms){const[x,y]=k.split(',').map(Number);rooms[k].el.style.left=`calc(${x}*(100% + ${GAP}px))`;rooms[k].el.style.top=`calc(${y}*(100% + ${GAP}px))`;rooms[k].rid=k}
 let cur=hub;
 
 /* ================= camera + gestures ================= */
+const camEl=$('#cam');
 let W=1,H=1;
-const cam={rx:0,ry:0,px:0,py:0,vx:0,vy:0,tx:0,ty:0,drag:false,kick:RM?0:34,lt:'',lm:''};
-function measure(){W=stage.clientWidth;H=stage.clientHeight;cam.tx=cam.px=cam.rx*W;cam.ty=cam.py=cam.ry*H;cam.vx=cam.vy=0;bird.place(true);if(cur===dlugie)dlugie.size();nuty.lift()}
+const cam={rx:0,ry:0,px:0,py:0,vx:0,vy:0,tx:0,ty:0,drag:false,travel:false,kick:RM?0:34,lt:'',lm:'',lc:'',ll:''};
+const lag={x:0,y:0,vx:0,vy:0,sx:0,sy:0};   // loose things on the wall trail behind it and wobble when it stops
+const ptr={x:0,y:0,tx:0,ty:0,l:'',last:-1e9};let beat=0,beatL='';
+// perch positions come from layout offsets, so camera zoom, intro animations and follow-through never skew them
+function perches(){for(const k in rooms){const r=rooms[k],p=r.el.querySelector('.perch');if(!p)continue;let x=p.offsetLeft,y=p.offsetTop;const o=p.offsetParent;
+  if(o&&o!==r.el){x+=o.offsetLeft;y+=o.offsetTop}
+  r.perchPos={x,y}}}
+function measure(){W=stage.clientWidth;H=stage.clientHeight;cam.tx=cam.px=cam.rx*(W+GAP);cam.ty=cam.py=cam.ry*(H+GAP);cam.vx=cam.vy=0;
+  perches();fx.size();bird.place(true);if(cur===dlugie)dlugie.size();nuty.lift()}
+function land(){perches();const t=bird.goal();if(t){if(bird.fl){bird.fl.x1=t.x;bird.fl.y1=t.y}else if(!cam.drag){bird.x=t.x;bird.y=t.y}}
+  snd.land(cur.rid);if(!RM){lag.vy+=230;cam.kick=6}cur.landed&&cur.landed()}
 function stepCam(dt){
-  if(!cam.drag){
+  if(cam.drag){const d=Math.exp(-dt*9);cam.vx*=d;cam.vy*=d}
+  else{
     if(RM){cam.px=cam.tx;cam.py=cam.ty;cam.vx=cam.vy=0}
-    else{const k=230,c=24;
+    else{const k=180,c=21;
       cam.vx+=(-k*(cam.px-cam.tx)-c*cam.vx)*dt;cam.vy+=(-k*(cam.py-cam.ty)-c*cam.vy)*dt;cam.px+=cam.vx*dt;cam.py+=cam.vy*dt;
-      if(Math.abs(cam.px-cam.tx)<.4&&Math.abs(cam.vx)<8){cam.px=cam.tx;cam.vx=0}
-      if(Math.abs(cam.py-cam.ty)<.4&&Math.abs(cam.vy)<8){cam.py=cam.ty;cam.vy=0}}
+      if(Math.abs(cam.px-cam.tx)<.5&&Math.abs(cam.vx)<10){cam.px=cam.tx;cam.vx=0}
+      if(Math.abs(cam.py-cam.ty)<.5&&Math.abs(cam.vy)<10){cam.py=cam.ty;cam.vy=0}}
+    if(cam.travel&&cam.px===cam.tx&&cam.py===cam.ty){cam.travel=false;land()}
   }
   cam.kick*=Math.exp(-dt*5.5);if(Math.abs(cam.kick)<.05)cam.kick=0;
   const t=`translate3d(${(-cam.px).toFixed(1)}px,${(-cam.py).toFixed(1)}px,0)`;if(t!==cam.lt){cam.lt=t;wall.style.transform=t}
+  // the camera pulls back and banks while it travels
+  const far=clamp(Math.hypot((cam.px-cam.tx)/(W+GAP),(cam.py-cam.ty)/(H+GAP)),0,1);
+  const cs=RM?'none':`scale(${(1-.09*Math.sin(Math.PI*far)).toFixed(4)}) rotateY(${clamp(cam.vx*.007,-17,17).toFixed(2)}deg) rotateX(${clamp(-cam.vy*.007,-15,15).toFixed(2)}deg) rotate(${clamp(cam.vx*.0006,-1.2,1.2).toFixed(2)}deg)`;
+  if(cs!==cam.lc){cam.lc=cs;camEl.style.transform=cs}
   const mx=(2.2+clamp(cam.vx*.011,-20,20)+cam.kick).toFixed(1),my=(1.4+clamp(cam.vy*.011,-20,20)-cam.kick*.55).toFixed(1),m=mx+'|'+my;
   if(m!==cam.lm){cam.lm=m;stage.style.setProperty('--mx',mx);stage.style.setProperty('--my',my)}
+  if(!RM){
+    lag.sx+=(cam.vx-lag.sx)*Math.min(1,dt*14);lag.sy+=(cam.vy-lag.sy)*Math.min(1,dt*14);
+    lag.vx+=(170*(lag.sx*.008-lag.x)-12*lag.vx)*dt;lag.vy+=(170*(lag.sy*.008-lag.y)-12*lag.vy)*dt;
+    lag.x=clamp(lag.x+lag.vx*dt,-28,28);lag.y=clamp(lag.y+lag.vy*dt,-28,28);
+    const l=lag.x.toFixed(1)+'|'+lag.y.toFixed(1);if(l!==cam.ll){cam.ll=l;stage.style.setProperty('--lx',lag.x.toFixed(1));stage.style.setProperty('--ly',lag.y.toFixed(1))}
+    {const n=performance.now();if(n-ptr.last>2500){ptr.tx=Math.sin(n/2300)*.6;ptr.ty=Math.cos(n/3100)*.45}}
+    ptr.x+=(ptr.tx-ptr.x)*Math.min(1,dt*5);ptr.y+=(ptr.ty-ptr.y)*Math.min(1,dt*5);
+    const pp=ptr.x.toFixed(2)+'|'+ptr.y.toFixed(2);if(pp!==ptr.l){ptr.l=pp;stage.style.setProperty('--ptx',ptr.x.toFixed(2));stage.style.setProperty('--pty',ptr.y.toFixed(2))}
+  }
+  snd.slide(cam.drag||cam.travel?Math.hypot(cam.vx,cam.vy):0);
 }
 const DIRS={E:[1,0],W:[-1,0],S:[0,1],N:[0,-1]};
 const neighbour=d=>rooms[(cam.rx+DIRS[d][0])+','+(cam.ry+DIRS[d][1])];
 const hasEdge=d=>cur.edges&&cur.edges.includes(d)&&(!cur.edges_ok||cur.edges_ok(d));
 let wake=null;
 function goTo(x,y){const r=rooms[x+','+y];if(!r||r===cur)return;
-  cur.leave&&cur.leave();cam.rx=x;cam.ry=y;cam.tx=x*W;cam.ty=y*H;cur=r;
+  const fwd=x>cam.rx||y>cam.ry;
+  cur.leave&&cur.leave();cam.rx=x;cam.ry=y;cam.tx=x*(W+GAP);cam.ty=y*(H+GAP);cam.travel=true;cur=r;
   for(const k in rooms)rooms[k].el.inert=rooms[k]!==cur;
-  document.querySelectorAll('#map rect').forEach(e=>e.classList.toggle('at',e.dataset.k===r.rid));stage.dataset.room=r.rid;
-  bird.el.style.setProperty('--lift','0px');bird.puff(0);bird.sayEl.classList.remove('on');
-  cur.enter&&cur.enter();bird.place();bird.set('fly',620);snd.ensure();snd.swish();
+  document.querySelectorAll('#map rect').forEach(e=>e.classList.toggle('at',e.dataset.k===r.rid));stage.dataset.room=r.rid;pop($('#map'));
+  bird.liftT=0;bird.puff(0);bird.sayEl.classList.remove('on');
+  cur.enter&&cur.enter();bird.place();snd.ensure();snd.peel(fwd);
   if(cur.listens&&ear.status==='off')ear.start();
   try{if(cur.listens&&navigator.wakeLock&&!wake)navigator.wakeLock.request('screen').then(w=>{wake=w;w.addEventListener('release',()=>wake=null)}).catch(()=>{});
     if(!cur.listens&&wake){wake.release();wake=null}}catch(e){}
 }
-function act(d){const n=neighbour(d);if(n){const[x,y]=n.rid.split(',').map(Number);goTo(x,y)}else if(hasEdge(d)){cur.edge(d)}
-  else if(!RM){cam.vx+=DIRS[d][0]*900;cam.vy+=DIRS[d][1]*900}}
+function bump(d){if(!RM){cam.vx+=DIRS[d][0]*900;cam.vy+=DIRS[d][1]*900}snd.bump();bird.set('hear',400)}
+function act(d){const n=neighbour(d);if(n){const[x,y]=n.rid.split(',').map(Number);goTo(x,y)}else if(hasEdge(d)){cur.edge(d)}else bump(d)}
 function press(el,fn){el.addEventListener('pointerdown',e=>{e.stopPropagation();snd.ensure();bird.wake();fn(e)});
   el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();fn(e)}})}
 
@@ -897,6 +1168,7 @@ stage.addEventListener('pointerdown',e=>{
   cur.holdStart&&cur.holdStart(e.target,false);
 });
 stage.addEventListener('pointermove',e=>{
+  const sb=stage.getBoundingClientRect();ptr.last=performance.now();ptr.tx=((e.clientX-sb.left)/W-.5)*2;ptr.ty=((e.clientY-sb.top)/H-.5)*2;bird.ptr={x:e.clientX-sb.left,y:e.clientY-sb.top};
   if(!g||e.pointerId!==g.id)return;
   const dx=e.clientX-g.x0,dy=e.clientY-g.y0;
   if(!g.axis){if(Math.hypot(dx,dy)<10)return;g.axis=Math.abs(dx)>Math.abs(dy)?'x':'y';stage.classList.add('dragging');if(g.held){g.held=false;cur.holdEnd&&cur.holdEnd()}}
@@ -909,8 +1181,8 @@ stage.addEventListener('pointermove',e=>{
   else if(hasEdge(dir)){cur.edgeDrag&&cur.edgeDrag(dir,Math.min(1,Math.abs(d)/(dim*.28)));off=d*.06}
   else off=d*.2;
   cam.drag=true;
-  if(g.axis==='x'){const np=cam.rx*W-off;cam.vx=clamp((np-cam.px)*60,-2400,2400);cam.px=np;cam.py=cam.ry*H}
-  else{const np=cam.ry*H-off;cam.vy=clamp((np-cam.py)*60,-2400,2400);cam.py=np;cam.px=cam.rx*W}
+  if(g.axis==='x'){const np=cam.rx*(W+GAP)-off;cam.vx=clamp((np-cam.px)*60,-2600,2600);cam.px=np;cam.py=cam.ry*(H+GAP)}
+  else{const np=cam.ry*(H+GAP)-off;cam.vy=clamp((np-cam.py)*60,-2600,2600);cam.py=np;cam.px=cam.rx*(W+GAP)}
 });
 function endGesture(e,cancel){
   if(!g||e.pointerId!==g.id)return;const s=g;g=null;cam.drag=false;stage.classList.remove('dragging');
@@ -923,6 +1195,7 @@ function endGesture(e,cancel){
   const flick=Math.abs(s.v)>.4&&Math.abs(d)>26&&Math.sign(s.v)===Math.sign(d);
   if(neighbour(dir)){if(!cancel&&(Math.abs(d)>dim*.2||flick))act(dir)}
   else if(hasEdge(dir)){cur.edgeDrag&&cur.edgeDrag(dir,0);if(!cancel&&(Math.abs(d)>dim*.11||flick))cur.edge(dir)}
+  else if(Math.abs(d)>60){snd.bump()}
 }
 stage.addEventListener('pointerup',e=>endGesture(e,false));
 stage.addEventListener('pointercancel',e=>endGesture(e,true));
@@ -934,7 +1207,7 @@ let spaceDown=false;
 addEventListener('keydown',e=>{
   if(e.metaKey||e.ctrlKey||e.altKey)return;snd.ensure();bird.wake();
   const k={ArrowRight:'E',ArrowLeft:'W',ArrowDown:'S',ArrowUp:'N'}[e.key];
-  if(k){e.preventDefault();act(k);return}
+  if(k){e.preventDefault();if(!e.repeat)act(k);return}
   const f=document.activeElement;
   if((e.key==='Enter'||e.key===' ')&&f&&f.matches&&f.matches('[data-go],[data-act]')){e.preventDefault();
     if(f.dataset.go){const[x,y]=f.dataset.go.split(',').map(Number);goTo(x,y)}else act(f.dataset.act);return}
@@ -948,15 +1221,26 @@ stage.addEventListener('contextmenu',e=>e.preventDefault());
 
 /* ================= boot ================= */
 for(const k in rooms){rooms[k].init&&rooms[k].init();rooms[k].el.inert=rooms[k]!==hub}
+{const C={'0,0':['pink','blue','yellow'],'1,0':['yellow','blue','white'],'-1,0':['pink','blue'],'0,-1':['yellow','pink','white'],'0,1':['pink','yellow','blue']};   // drifting paper scraps behind everything
+  for(const k in rooms)for(let i=0;i<7;i++){const e=document.createElement('i'),r=Math.random;e.className='fl s'+(i%4);
+    e.style.cssText=`--s:${14+r()*30|0}px;--x:${r()*92|0}%;--y:${6+r()*84|0}%;--c:var(--${C[k][i%C[k].length]});--d:${5+r()*7}s;--dl:-${r()*8}s;--tx:${(r()-.5)*90|0}px;--ty:${(r()-.5)*110|0}px;--r:${(r()-.5)*260|0}deg`;
+    rooms[k].el.prepend(e)}}
 document.querySelector('#map rect[data-k="0,0"]').classList.add('at');stage.dataset.room='0,0';
 measure();hub.enter();
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>bird.place(true));
+let intro=!RM;
+if(intro){bird.x=-110;bird.y=H*.2;bird.face=1;   // the pigeon flies in once the poster is up
+  setTimeout(()=>{intro=false;bird.place()},900);setTimeout(()=>stage.classList.remove('boot'),2400)}
+else stage.classList.remove('boot');
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{perches();const t=bird.goal();if(bird.fl){bird.fl.x1=t.x;bird.fl.y1=t.y}else if(!intro)bird.place(true)});
 let last=performance.now();
 function tick(now){const dt=Math.min(.05,(now-last)/1000);last=now;
   stepCam(dt);
   const f=cur.listens?ear.read(now):null;
   cur.frame&&cur.frame(f,now,dt);
-  bird.frame(now);
+  if(!RM){const lv=f&&f.voiced?Math.min(1,f.level*7):0;beat+=(lv-beat)*Math.min(1,dt*(lv>beat?18:5));   // the backdrop breathes, and swells with the sound
+    const b=(beat*.8+.2*(.5+.5*Math.sin(now/480))).toFixed(2);if(b!==beatL){beatL=b;stage.style.setProperty('--beat',b)}}
+  bird.frame(now,dt);
+  fx.frame(dt);
   requestAnimationFrame(tick)}
 requestAnimationFrame(tick);
 })();
