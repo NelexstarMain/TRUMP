@@ -67,7 +67,7 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
   box-shadow:7px 8px 0 var(--ink);transform:rotate(-1.2deg)}
 .card.small{width:min(100%,clamp(200px,38vh,340px))}
 .card::before{content:"";position:absolute;left:50%;top:-13px;width:92px;height:26px;margin-left:-46px;
-  background:var(--yellow);mix-blend-mode:multiply;transform:rotate(2.5deg);opacity:.92}
+  background:var(--yellow);transform:rotate(2.5deg);opacity:.92}
 .crop{position:absolute;width:14px;height:14px;border:0 solid var(--ink);pointer-events:none}
 .crop.c1{left:-22px;top:-22px;border-right-width:1.5px;border-bottom-width:1.5px}
 .crop.c2{right:-22px;top:-22px;border-left-width:1.5px;border-bottom-width:1.5px}
@@ -108,17 +108,18 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 
 /* ---------- hub: the pigeon plays this very game on a retro computer; no words here ---------- */
 .hub{background:var(--paper);padding:calc(var(--tab) + 6px)}
-.hub::before{width:520px;height:520px;left:50%;top:40%;translate:-50% -50% -120px;background:var(--ht-rad-pink) center/520px no-repeat;mix-blend-mode:multiply}
-.hub::after{width:min(56vmin,380px);aspect-ratio:1;border-radius:50%;left:50%;top:38%;translate:-10% -70% -200px;background:var(--yellow);mix-blend-mode:multiply}
+.hub::before{width:min(56vmin,380px);aspect-ratio:1;border-radius:50%;left:50%;top:38%;translate:-10% -70%;background:var(--yellow)}
+.hub::after{width:520px;height:520px;left:50%;top:40%;translate:-50% -50%;background:var(--ht-rad-pink) center/520px no-repeat;mix-blend-mode:multiply}
 .perch{position:absolute;width:1px;height:1px}
 .scene{font-size:clamp(5.5px,min(1.9vw,1.55vh),11.5px);width:46em;height:46em;perspective:95em;perspective-origin:calc(50% + var(--ptx,0)*-30%) calc(28% + var(--pty,0)*-20%)}
 .scene>*,.pc>*{position:absolute}
-.floor{left:-60%;right:-60%;bottom:-2em;height:44em;transform-origin:50% 100%;transform:rotateX(76deg);
-  background:repeating-linear-gradient(90deg,var(--ink) 0 .3em,transparent .3em 5em),repeating-linear-gradient(0deg,var(--ink) 0 .3em,transparent .3em 5em),var(--yellow);
-  -webkit-mask-image:linear-gradient(to top,#000 35%,transparent 96%);mask-image:linear-gradient(to top,#000 35%,transparent 96%);animation:floor 1.6s linear infinite}
-@keyframes floor{to{background-position:0 0,0 5em,0 0}}
-.pc{left:5em;top:3em;width:24em;height:26em;transform-style:preserve-3d;transform:rotateY(27deg) rotateX(-6deg);animation:pcsway 7s ease-in-out infinite alternate}
-@keyframes pcsway{to{transform:rotateY(20deg) rotateX(-3deg)}}
+.floor{left:-60%;right:-60%;bottom:-16em;height:58em;transform-origin:50% 100%;transform:rotateX(76deg);overflow:hidden;background:var(--yellow);
+  -webkit-mask-image:linear-gradient(to top,#000 35%,transparent 96%);mask-image:linear-gradient(to top,#000 35%,transparent 96%)}
+.floor i{position:absolute;inset:-5em 0 0;will-change:transform;animation:floor 1.6s linear infinite;
+  background:repeating-linear-gradient(90deg,var(--ink) 0 .3em,transparent .3em 5em),repeating-linear-gradient(0deg,var(--ink) 0 .3em,transparent .3em 5em)}
+@keyframes floor{to{transform:translateY(5em)}}
+.pc{left:10em;top:1em;width:24em;height:26em;transform-style:preserve-3d;transform:rotateY(19deg) rotateX(-7deg);animation:pcsway 7s ease-in-out infinite alternate}
+@keyframes pcsway{to{transform:rotateY(13deg) rotateX(-4deg)}}
 .box{position:absolute;transform-style:preserve-3d}
 .f{position:absolute;box-sizing:border-box;border:.45em solid var(--ink);background:var(--white)}
 .mon{left:0;top:0;width:24em;height:19em}
@@ -133,12 +134,12 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 .led{position:absolute;right:2.2em;bottom:1em;width:1em;height:1em;border-radius:50%;background:var(--pink);animation:led 1.1s steps(2) infinite}
 @keyframes led{50%{background:var(--yellow)}}
 .knob{position:absolute;left:2.2em;bottom:.8em;width:4em;height:1.2em;background:repeating-linear-gradient(90deg,var(--ink) 0 .35em,transparent .35em .8em)}
-.kbd{left:.5em;top:25.5em;width:21em;height:8em;transform:translateZ(17em) rotateX(74deg);border:.45em solid var(--ink);border-radius:.6em;box-sizing:border-box;
+.kbd{left:1.5em;top:25.5em;width:21em;height:8em;transform:translateZ(17em) rotateX(74deg);border:.45em solid var(--ink);border-radius:.6em;box-sizing:border-box;
   background:repeating-linear-gradient(90deg,var(--ink) 0 .25em,transparent .25em 2em),repeating-linear-gradient(0deg,var(--ink) 0 .25em,transparent .25em 2em),var(--white)}
 .mouse{left:24em;top:28.5em;width:4em;height:5.4em;transform:translateZ(18em) rotateX(74deg);border:.45em solid var(--ink);border-radius:1.6em 1.6em 1.2em 1.2em;background:var(--yellow);box-sizing:border-box}
-.crt{position:absolute;inset:1.3em 1.3em 3.3em;background:var(--ink);border-radius:1.3em;overflow:hidden;animation:flick 3.7s steps(1) infinite}
-.crt::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:5;background:repeating-linear-gradient(0deg,rgba(250,250,245,.14) 0 .16em,transparent .16em .5em);animation:scan 1s linear infinite}
-@keyframes scan{to{background-position:0 .5em}}
+.crt{position:absolute;inset:1.3em 1.3em 3.3em;background:var(--ink);border-radius:1.3em;overflow:hidden}
+.crt::after{content:"";position:absolute;inset:-.5em 0 0;will-change:transform;pointer-events:none;z-index:5;background:repeating-linear-gradient(0deg,rgba(250,250,245,.14) 0 .16em,transparent .16em .5em);animation:scan 1s linear infinite}
+@keyframes scan{to{transform:translateY(.5em)}}
 @keyframes flick{0%,100%{filter:none}47%{filter:brightness(1.3)}49%{filter:none}}
 .mg{position:absolute;inset:0;display:grid;grid-template:1fr 1fr/1fr 1fr;gap:.9em;padding:1.2em}
 .mt{position:relative;background:var(--c);color:var(--k,var(--ink));border-radius:.5em;display:grid;place-items:center;transition:transform .12s}
@@ -156,9 +157,28 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 .mg.win .res{background:radial-gradient(circle,transparent 30%,var(--yellow) 31% 46%,transparent 47%);animation:mopen .3s}
 .mg.fail{animation:mshake .4s linear}
 @keyframes mshake{20%{transform:translateX(-.9em)}40%{transform:translateX(.8em)}60%{transform:translateX(-.5em)}80%{transform:translateX(.3em)}}
-.tpt{left:20em;top:35em;width:27em;height:auto;overflow:visible;transform:rotateY(-12deg) rotate(-5deg)}
-.hub .perch{left:37em;top:31em}
-.edge{position:absolute;z-index:2;display:grid;place-items:center;mix-blend-mode:multiply;color:var(--ink)}
+.tpt{left:31em;top:38em;width:19em;height:auto;overflow:visible;transform:rotate(-8deg)}
+/* the pigeon at the keyboard, seen from behind, facing the monitor */
+.typist{left:16.2em;top:23.5em;width:19em;height:auto;overflow:visible;opacity:0;transform:scale(.5);transform-origin:50% 100%;transition:opacity .15s,transform .25s cubic-bezier(.2,1.5,.4,1);cursor:pointer}
+.hub.home .typist{opacity:1;transform:none}
+.tw{transform-box:fill-box}
+.tw-l{transform-origin:100% 100%;animation:typeL .2s ease-in-out infinite alternate}
+.tw-r{transform-origin:0 100%;animation:typeR .2s ease-in-out infinite alternate-reverse}
+@keyframes typeL{to{transform:rotate(-14deg) translateY(-3px)}}
+@keyframes typeR{to{transform:rotate(14deg) translateY(-3px)}}
+.ty-hd{transform-box:fill-box;transform-origin:50% 100%;animation:tyhd 2.4s ease-in-out infinite}
+@keyframes tyhd{0%,100%{transform:rotate(-4deg)}40%{transform:rotate(5deg) translateY(2px)}62%{transform:rotate(2deg) translateY(5px)}}
+.ty-all{transform-box:fill-box;transform-origin:50% 100%}
+.typist[data-s="hit"] .tw{animation:none;transform:translateY(6px) scaleY(.88)}
+.typist[data-s="bad"] .ty-hd{animation:tyno .2s linear infinite}
+@keyframes tyno{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(16deg)}}
+.typist[data-s="bad"] .tw{animation:none;transform:translateY(13px)}
+.typist[data-s="bad"] .ty-all{animation:ruffle .45s linear 1}
+.typist[data-s="win"] .ty-all{animation:jump .8s ease-out 1}
+.typist[data-s="win"] .tw-l{animation:none;transform:rotate(-40deg) translateY(-12px)}
+.typist[data-s="win"] .tw-r{animation:none;transform:rotate(40deg) translateY(-12px)}
+.hub .perch{left:25.7em;top:44em}
+.edge{position:absolute;z-index:2;display:grid;place-items:center;color:var(--ink)}
 .edge svg{width:calc(var(--tab)*.5);height:calc(var(--tab)*.5);animation:nudge 6.4s ease-in-out infinite}
 .e-right{right:0;top:0;bottom:0;width:var(--tab);background:var(--pink)}
 .e-left{left:0;top:0;bottom:0;width:var(--tab);background:var(--yellow)}
@@ -169,12 +189,12 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 
 /* ---------- nuty ---------- */
 .nuty{background:var(--pink);padding-left:max(46px,env(safe-area-inset-left,0px));padding-right:max(46px,env(safe-area-inset-right,0px))}
-.nuty::before{width:74vmin;aspect-ratio:1;border-radius:50%;left:-20vmin;top:-16vmin;background:var(--yellow);mix-blend-mode:multiply}
-.nuty::after{left:0;right:0;bottom:0;height:440px;background:var(--ht-fade-blue) center bottom/440px repeat-x;mix-blend-mode:multiply}
+.nuty::before{width:74vmin;aspect-ratio:1;border-radius:50%;left:-20vmin;top:-16vmin;background:var(--red)}
+.nuty::after{left:0;right:0;bottom:0;height:440px;background:var(--ht-fade-blue) center bottom/440px repeat-x}
 .bars{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;max-width:min(100%,520px);min-height:16px}
 .bars i{width:16px;height:16px;box-sizing:border-box;border:2px solid var(--ink)}
 .bars i.d{background:var(--ink)}.bars i.d:nth-child(3n+1){background:var(--yellow)}.bars i.d:nth-child(3n+2){background:var(--white)}
-.bars i.now{background:var(--blue);mix-blend-mode:multiply}
+.bars i.now{background:var(--blue)}
 .deck{position:relative;width:min(100%,clamp(240px,62vh,520px));display:grid}
 .deck>*{grid-area:1/1}
 .sheet{background:var(--white);box-shadow:5px 6px 0 var(--ink);opacity:.9}
@@ -195,8 +215,8 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 
 /* ---------- palce ---------- */
 .palce{background:var(--yellow);padding-right:max(46px,env(safe-area-inset-right,0px))}
-.palce::before{width:160%;height:34%;left:-30%;top:52%;background:var(--pink);mix-blend-mode:multiply;transform:rotate(-14deg)}
-.palce::after{width:520px;height:520px;right:-190px;top:-200px;background:var(--ht-rad-blue) center/520px no-repeat;mix-blend-mode:multiply}
+.palce::before{width:160%;height:34%;left:-30%;top:52%;background:var(--red);transform:rotate(-14deg)}
+.palce::after{width:520px;height:520px;right:-190px;top:-200px;background:var(--ht-rad-blue) center/520px no-repeat}
 .big-name{font-family:var(--display);font-size:clamp(40px,10vmin,76px);line-height:.9}
 .horn{display:flex;align-items:center;gap:clamp(12px,4vmin,26px);flex-wrap:wrap;justify-content:center}
 .blow{height:clamp(56px,14vmin,80px);padding:0 clamp(18px,5vmin,30px);border-radius:999px 14px 14px 999px;background:var(--ink);color:var(--yellow);
@@ -207,7 +227,7 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 /* ---------- strój ---------- */
 .stroj{background:var(--blue);color:var(--white)}
 .stroj::before{width:82vmin;aspect-ratio:1;border-radius:50%;left:-30vmin;bottom:-34vmin;background:var(--yellow)}
-.stroj::after{left:0;right:0;top:0;height:440px;background:var(--ht-fade-pink) center bottom/440px repeat-x;transform:scaleY(-1);mix-blend-mode:multiply}
+.stroj::after{left:0;right:0;top:0;height:440px;background:var(--ht-fade-pink) center bottom/440px repeat-x;transform:scaleY(-1)}
 .huge{font-family:var(--display);font-size:clamp(84px,27vmin,210px);line-height:.82;letter-spacing:-.03em;min-height:.82em;padding-bottom:.14em;
   text-shadow:calc(var(--mx)*2px + 3px) calc(var(--my)*2px + 3px) 0 var(--ink)}
 .meter{position:relative;width:min(100%,360px);height:46px;background:var(--white);box-shadow:5px 6px 0 var(--ink);transform:rotate(-.8deg);
@@ -237,8 +257,9 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 #trace{width:100vw;height:clamp(90px,18vh,150px);display:block;margin-inline:calc(-1*max(16px,env(safe-area-inset-left,0px)))}
 
 /* ---------- bird ---------- */
-#bird{position:absolute;left:0;top:0;z-index:20;width:104px;aspect-ratio:150/140;cursor:pointer;will-change:transform;
-  filter:drop-shadow(3px 4px 0 rgba(20,32,132,.28))}
+#bird{position:absolute;left:0;top:0;z-index:20;width:104px;aspect-ratio:150/140;cursor:pointer;will-change:transform;transition:opacity .12s}
+#bird.gone{opacity:0;pointer-events:none}
+.b-out{fill:var(--white);stroke:var(--white);stroke-width:9;stroke-linejoin:round}
 .b-flip{width:100%;height:100%;transform:scaleX(var(--face,1)) rotate(var(--tilt,0deg));transform-origin:50% 78%}
 #bird svg{display:block;width:100%;height:100%;overflow:visible}
 .b-sq{transform-box:fill-box;transform-origin:50% 100%;transform:scale(var(--sx,1),var(--sy,1))}
@@ -294,25 +315,20 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 #stage{background:#C8CBC0 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='132'%3E%3Cg fill='none' stroke='%23142084' stroke-width='1.4' opacity='.38'%3E%3Ccircle cx='66' cy='66' r='9'/%3E%3Cpath d='M48 66h36M66 48v36M4 4h9M4 4v9M128 128h-9M128 128v-9'/%3E%3C/g%3E%3C/svg%3E") 0 0/132px 132px}
 #cam{position:absolute;inset:0;transform-origin:50% 50%;will-change:transform}
 .room{box-shadow:0 0 0 3px var(--ink),11px 13px 0 rgba(20,32,132,.22)}
-[data-lag]{translate:calc(var(--lx,0)*var(--k,1)*1px) calc(var(--ly,0)*var(--k,1)*1px);rotate:calc(var(--lx,0)*var(--k,1)*.06deg)}
 #fx{position:absolute;inset:0;width:100%;height:100%;z-index:30;pointer-events:none}
 /* 3D: every poster is a little stage with depth, and the wall swings in perspective while it travels */
 #stage{perspective:1300px}
-.room{perspective:1000px;perspective-origin:calc(50% + var(--ptx,0)*-24%) calc(50% + var(--pty,0)*-24%)}
-[data-lag]{translate:calc(var(--lx,0)*var(--k,1)*1px) calc(var(--ly,0)*var(--k,1)*1px) calc(var(--z,34)*1px)}
-#bird{perspective:420px}
-.b-flip{transform:rotateY(calc((1 - var(--face,1))*90deg)) rotate(var(--tilt,0deg));transition:transform .26s}
-@keyframes dots{to{background-size:474px}}
-.nuty::after,.stroj::after,.dlugie::after{animation:dots 3.1s ease-in-out infinite alternate}
+/* only the poster in view runs its animations */
+.room:not(.live) *,.room:not(.live)::before,.room:not(.live)::after{animation-play-state:paused!important}
+.nuty::before,.stroj::before,.hub::before{animation:swell 5s ease-in-out infinite alternate}
 .nuty::before,.stroj::before,.dlugie::before,.hub::after{transform:scale(calc(1 + var(--beat,0)*.17))}
 .palce::before{transform:rotate(-14deg) scaleY(calc(1 + var(--beat,0)*.3))}
-.fl{position:absolute;z-index:0;pointer-events:none;width:var(--s);height:var(--s);left:var(--x);top:var(--y);color:var(--c);mix-blend-mode:multiply;translate:0 0 -90px;
+.fl{position:absolute;z-index:0;pointer-events:none;width:var(--s);height:var(--s);left:var(--x);top:var(--y);color:var(--c);will-change:transform;
   animation:drift var(--d) ease-in-out var(--dl) infinite alternate}
 .fl.s0{border:calc(var(--s)*.2) solid currentColor;border-radius:50%;box-sizing:border-box}
 .fl.s1{background:currentColor;clip-path:polygon(50% 0,100% 100%,0 100%)}
 .fl.s2{background:currentColor;border-radius:999px 999px 0 0;height:calc(var(--s)*.5)}
 .fl.s3{background:linear-gradient(currentColor 0 0) center/100% 26% no-repeat,linear-gradient(currentColor 0 0) center/26% 100% no-repeat}
-.stroj .fl,.dlugie .fl{mix-blend-mode:normal;opacity:.6}
 @keyframes drift{from{transform:translate(0,0) rotate(0)}to{transform:translate(var(--tx),var(--ty)) rotate(var(--r))}}
 @keyframes spin{to{rotate:360deg}}
 @keyframes swell{to{scale:1.07}}
@@ -323,7 +339,7 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 .palce::after{translate:calc(var(--lx,0)*-2px + var(--ptx,0)*18px) calc(var(--pty,0)*18px);animation:spin 110s linear infinite}
 .stroj::before{translate:calc(var(--lx,0)*-2px) 0 -170px}
 .dlugie::before{translate:calc(var(--lx,0)*-2px) 0 -170px;scale:calc(1 + var(--grow,0)*.95);transition:scale .9s cubic-bezier(.2,1,.3,1)}
-.hub::before{animation:spin 140s linear infinite}
+.hub::after{animation:spin 140s linear infinite}
 .cap{transition:transform .08s}
 .cap.down{transform:translateY(14px)}
 .tpt .bell{transform-box:fill-box;transform-origin:0 50%}
@@ -380,7 +396,7 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
         <symbol id="i4" viewBox="0 0 24 24"><path d="M2 12c3-9 5-9 7 0s4 9 7 0 4-6 6-2"/></symbol>
       </defs></svg>
       <div class="scene" data-lag data-in style="--k:.7;--z:0;--an:in-pop;--i:2">
-        <div class="floor"></div>
+        <div class="floor"><i></i></div>
         <div class="pc">
           <div class="box mon">
             <div class="f side"></div><div class="f top"></div>
@@ -420,6 +436,25 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
           <rect data-valve="1" x="207" y="6" width="35" height="146" fill="transparent"/><rect data-valve="2" x="242" y="6" width="35" height="146" fill="transparent"/><rect data-valve="3" x="277" y="6" width="35" height="146" fill="transparent"/>
           <path data-bell d="M322 38C376 38 416 26 456 0V106C416 80 376 66 322 66Z" fill="transparent"/>
         </svg>
+        <svg class="typist" id="typist" viewBox="0 0 150 165" data-s="type" aria-hidden="true"><g class="ty-all">
+          <g class="b-out">
+            <path d="M52 126l-13 34 23-9 13 11 13-11 23 9-13-34z"/>
+            <path class="tw tw-l" d="M46 94C30 86 15 68 11 48c15 6 30 15 42 28z"/><path class="tw tw-r" d="M104 94c16-8 31-26 35-46-15 6-30 15-42 28z"/>
+            <ellipse cx="75" cy="98" rx="40" ry="43"/><g class="ty-hd"><circle cx="75" cy="44" r="23"/><path d="M57 31L41 21l13 21z"/></g>
+          </g>
+          <path d="M52 126l-13 34 23-9 13 11 13-11 23 9-13-34z" fill="var(--blue)"/>
+          <path d="M62 152l13-24 13 24" fill="none" stroke="var(--white)" stroke-width="2" opacity=".8"/>
+          <ellipse cx="75" cy="98" rx="40" ry="43" fill="var(--pink)"/>
+          <path d="M45 118c16 14 44 14 60 0-6 21-54 21-60 0z" fill="var(--red)"/>
+          <path class="tw tw-l" d="M46 94C30 86 15 68 11 48c15 6 30 15 42 28z" fill="var(--ink)"/>
+          <path class="tw tw-r" d="M104 94c16-8 31-26 35-46-15 6-30 15-42 28z" fill="var(--ink)"/>
+          <g class="ty-hd">
+            <ellipse cx="75" cy="64" rx="24" ry="8" fill="var(--red)"/>
+            <circle cx="75" cy="44" r="23" fill="var(--pink)"/>
+            <path d="M57 31L41 21l13 21z" fill="var(--yellow)"/>
+            <circle cx="60" cy="42" r="6" fill="var(--white)"/><circle cx="58.500" cy="41" r="2.800" fill="var(--ink)"/>
+          </g>
+        </g></svg>
         <div class="perch"></div>
       </div>
       <button class="edge e-right" data-in style="--an:in-r;--i:1" data-go="1,0" data-torn="left" aria-label="Nuty: fiszki z nasłuchem"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i1"/></svg></button>
@@ -519,18 +554,23 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
         <feGaussianBlur in="SourceAlpha" stdDeviation="3.2"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 1 1 1 1 1 1"/></feComponentTransfer>
         <feComposite in2="SourceAlpha" operator="over" result="o"/><feFlood flood-color="#FAFAF5"/><feComposite in2="o" operator="in" result="w"/>
         <feMerge><feMergeNode in="w"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-      <g class="b-sq"><g class="b-all"><g filter="url(#sticker)">
+      <g class="b-sq"><g class="b-all">
+        <g class="b-out">
+          <path class="b-tail" d="M36 76L3 58l9 15-11 5 12 7-9 12 34-5z"/>
+          <g class="b-body"><path d="M22 84C20 60 44 48 70 50c24 2 40 16 42 36 1 19-18 30-44 30S24 104 22 84z"/></g>
+          <g class="b-head"><path d="M90 46C86 60 82 72 80 90l34-3c1-14 6-27 11-39z"/><circle cx="108" cy="39" r="19.500"/><path d="M124 33l22 9-22 8z"/></g>
+        </g>
         <path class="b-legs" d="M60 110V129M60 129l-10 5M60 129l1 7M60 129l10 3M80 110V129M80 129l-10 5M80 129l1 7M80 129l10 3" fill="none" stroke="var(--red)" stroke-width="3.600" stroke-linecap="round" stroke-linejoin="round"/>
         <g class="b-tail"><path d="M36 76L3 58l9 15-11 5 12 7-9 12 34-5z" fill="var(--blue)"/><path d="M12 73l22 6M13 85l21 0" stroke="var(--white)" stroke-width="1.800" fill="none" opacity=".8"/></g>
         <g class="b-body">
           <path d="M22 84C20 60 44 48 70 50c24 2 40 16 42 36 1 19-18 30-44 30S24 104 22 84z" fill="var(--pink)"/>
-          <path d="M40 101c16 13 46 12 64-4-8 20-52 24-64 4z" fill="var(--yellow)" style="mix-blend-mode:multiply"/>
-          <g class="b-wing"><path d="M34 72c16-19 52-17 64 6-4 10-13 17-23 21l-6-9-4 11-11 2-2-10-9 9c-8-3-13-7-15-11z" fill="var(--blue)" style="mix-blend-mode:multiply"/>
+          <path d="M40 101c16 13 46 12 64-4-8 20-52 24-64 4z" fill="var(--red)"/>
+          <g class="b-wing"><path d="M34 72c16-19 52-17 64 6-4 10-13 17-23 21l-6-9-4 11-11 2-2-10-9 9c-8-3-13-7-15-11z" fill="var(--ink)"/>
             <path d="M50 75c11-6 26-5 36 3M47 86c10-5 22-4 31 1" stroke="var(--white)" stroke-width="2" fill="none" stroke-linecap="round" opacity=".85"/></g>
         </g>
         <g class="b-head">
           <path d="M90 46C86 60 82 72 80 90l34-3c1-14 6-27 11-39z" fill="var(--pink)"/>
-          <path d="M86 61l35-5-3 10-34 5z" fill="var(--yellow)" style="mix-blend-mode:multiply"/><path d="M84 73l33-4-2 7-32 4z" fill="var(--blue)" style="mix-blend-mode:multiply"/>
+          <path d="M86 61l35-5-3 10-34 5z" fill="var(--red)"/><path d="M84 73l33-4-2 7-32 4z" fill="var(--ink)"/>
           <circle cx="108" cy="39" r="19.500" fill="var(--pink)"/>
           <path d="M124 33l22 9-22 8z" fill="var(--yellow)"/><path d="M125 42h19" stroke="var(--ink)" stroke-width="1.600"/>
           <circle cx="125.500" cy="36" r="3.600" fill="var(--white)"/>
@@ -539,7 +579,7 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
           <ellipse class="b-lid" cx="110" cy="35" rx="9.800" ry="9.800" fill="var(--pink)"/>
         </g>
         <text class="b-z" x="126" y="14">z</text><text class="b-z b-z2" x="136" y="6">z</text>
-      </g></g></g>
+      </g></g>
     </svg></div>
     <div id="say"></div>
   </div>
@@ -740,11 +780,11 @@ const stage=$('#stage'),wall=$('#wall');
     return `url(${c.toDataURL()})`}
   const fade=(x,y)=>Math.pow(y,1.5),rad=(x,y)=>1.05-Math.hypot(x-.5,y-.5)*2.5;
   try{
-    stage.style.setProperty('--ht-fade-blue',ht(col('--blue'),440,11,fade));
-    stage.style.setProperty('--ht-fade-pink',ht(col('--pink'),440,11,fade));
+    stage.style.setProperty('--ht-fade-blue',ht(col('--ink'),440,11,fade));
+    stage.style.setProperty('--ht-fade-pink',ht(col('--ink'),440,11,fade));
     stage.style.setProperty('--ht-fade-paper',ht(col('--paper'),440,11,fade));
     stage.style.setProperty('--ht-rad-pink',ht(col('--pink'),520,13,rad));
-    stage.style.setProperty('--ht-rad-blue',ht(col('--blue'),520,13,rad));
+    stage.style.setProperty('--ht-rad-blue',ht('#145916',520,13,rad));
     const c=document.createElement('canvas');c.width=c.height=256;const x=c.getContext('2d'),im=x.createImageData(256,256),d=im.data;
     for(let i=0;i<d.length;i+=4){const r=Math.random();
       if(r>.975){d[i]=250;d[i+1]=250;d[i+2]=245;d[i+3]=40+Math.random()*70}
@@ -811,10 +851,10 @@ const bird={el:$('#bird'),sayEl:$('#say'),base:'idle',until:0,sayT:0,lastAct:per
     return{x:p.x,y:p.y,w,face:cur.face||(p.x>W*.6?-1:1)}},
   place(snap){const t=this.goal();if(!t)return;
     if(this.lookBack){this.lookBack=0}
-    if(snap||RM||!this.ready){this.fl=null;this.x=t.x;this.y=t.y;this.w=t.w;this.face=t.face;this.tilt=0;this.ready=true;return}
+    if(snap||RM||!this.ready){this.fl=null;this.x=t.x;this.y=t.y;this.w=t.w;this.face=t.face;this.tilt=0;this.ready=true;hub.home(cur===hub);return}
     const x0=this.x+(this.fl?0:this.cx),y0=this.y-(this.fl?0:this.lift),d=Math.hypot(t.x-x0,t.y-y0);
     if(d<6){this.w=t.w;this.face=t.face;return}
-    this.fl={x0,y0,w0:this.w,x1:t.x,y1:t.y,w1:t.w,f1:t.face,t:-.16,dur:clamp(d*.5+430,600,1020)/1000,arc:clamp(d*.36,54,210),flap:0};
+    hub.home(false);this.fl={x0,y0,w0:this.w,x1:t.x,y1:t.y,w1:t.w,f1:t.face,t:-.16,dur:clamp(d*.5+430,600,1020)/1000,arc:clamp(d*.36,54,210),flap:0};
     this.lift=0;this.cx=0;this.x=x0;this.y=y0;if(Math.abs(t.x-x0)>30)this.face=t.x>x0?1:-1;
     delete this.el.dataset.act;this.actEnd=0;this.until=0;this.apply('fly');
     fx.feathers(x0,y0-this.w*.45,3,this.face)},
@@ -830,7 +870,7 @@ const bird={el:$('#bird'),sayEl:$('#say'),base:'idle',until:0,sayT:0,lastAct:per
         this.x=X;this.y=Y;this.w=f.w0+(f.w1-f.w0)*e;sx=.94;sy=1.07;
         f.flap-=dt;if(f.flap<=0&&t<.9){snd.flap();f.flap=.15}
         if(f.t>=1){this.fl=null;this.face=f.f1;this.tilt=0;this.landT=.46;this.apply(this.base);this.lastAct=now;this.nextAct=now+2600+Math.random()*3000;
-          fx.dust(f.x1,f.y1);snd.perch()}}
+          fx.dust(f.x1,f.y1);snd.perch();if(cur===hub)hub.home(true)}}
     }else{
       this.cx=clamp((cam.rx*(W+GAP)-cam.px)*.13,-70,70);
       this.tilt+=(clamp(cam.vx*.007,-18,18)*this.face-this.tilt)*Math.min(1,dt*12);
@@ -857,22 +897,24 @@ function stampOn(el,big,small){el.querySelector('b').innerHTML=big;el.querySelec
   setTimeout(()=>{snd.stamp();if(!RM)lag.vy+=170},170)}
 function shake(el){if(RM||!el.animate)return;el.animate([{translate:'0'},{translate:'-12px 0'},{translate:'10px 0'},{translate:'-7px 0'},{translate:'4px 0'},{translate:'0'}],{duration:340})}
 
-/* ---- hub: a looping scene where the pigeon keeps trying the four games on its computer ---- */
-const hub={el:$('#r-hub'),face:-1,g:{s:'menu',t:0,i:0},
-  init(){this.mg=$('#mg');this.tiles=[...this.mg.querySelectorAll('.mt')];this.curEl=this.mg.querySelector('.cur')},
+/* ---- hub: the pigeon sits at the keyboard and keeps trying the four games on its computer ---- */
+const hub={el:$('#r-hub'),g:{s:'menu',t:0,i:0},tt:0,
+  init(){this.mg=$('#mg');this.tiles=[...this.mg.querySelectorAll('.mt')];this.curEl=this.mg.querySelector('.cur');this.ty=$('#typist');this.scene=this.el.querySelector('.scene')},
+  home(v){this.el.classList.toggle('home',v);bird.el.classList.toggle('gone',v)},   // the flying sprite hands over to the seated pigeon
+  mood(s,ms){this.ty.dataset.s=s;clearTimeout(this.tt);this.tt=setTimeout(()=>this.ty.dataset.s='type',ms)},
   clear(){this.tiles.forEach(t=>t.classList.remove('open','hit'));this.mg.classList.remove('fail','win')},
-  enter(){bird.base='idle';this.clear();this.g={s:'menu',t:performance.now()+1400,i:0}},
-  frame(f,now){const g=this.g;if(RM||now<g.t||bird.fl)return;
+  enter(){bird.base='idle';this.clear();this.g={s:'menu',t:performance.now()+1200,i:0}},
+  frame(f,now){const g=this.g;if(RM||now<g.t||!this.el.classList.contains('home'))return;
     if(g.s==='menu'){g.i=(g.i+1+Math.floor(Math.random()*3))%4;this.curEl.style.left=(g.i%2?70:24)+'%';this.curEl.style.top=(g.i>1?72:26)+'%';g.s='move';g.t=now+850}
-    else if(g.s==='move'){this.tiles[g.i].classList.add('hit');bird.act('peck',700);snd.blip(880);g.s='click';g.t=now+260}
+    else if(g.s==='move'){this.tiles[g.i].classList.add('hit');this.mood('hit',260);snd.blip(880);g.s='click';g.t=now+260}
     else if(g.s==='click'){this.tiles[g.i].classList.remove('hit');this.tiles[g.i].classList.add('open');snd.blip(440,0,.05);snd.blip(660,.06,.05);g.s='try';g.t=now+1500}
     else if(g.s==='try'){const ok=Math.random()<.2;this.mg.classList.add(ok?'win':'fail');
-      if(ok){bird.set('win',900);snd.blip(660);snd.blip(880,.09);snd.blip(1320,.18,.14);const[x,y]=fx.at(this.mg);fx.burst(x,y,16,320)}
-      else{bird.set('bad',800);snd.blip(120,0,.26,'sawtooth');if(Math.random()<.4)fx.feathers(bird.x,bird.y-bird.w*.5,2,bird.face)}
+      if(ok){this.mood('win',900);snd.blip(660);snd.blip(880,.09);snd.blip(1320,.18,.14);const[x,y]=fx.at(this.mg);fx.burst(x,y,16,320)}
+      else{this.mood('bad',900);snd.blip(120,0,.26,'sawtooth');if(Math.random()<.4){const[x,y]=fx.at(this.ty);fx.feathers(x,y,2,0)}}
       g.s='res';g.t=now+1150}
     else{this.clear();g.s='menu';g.t=now+650}},
   tap(t){
-    if(t.closest('#bird')){bird.set('win',800);snd.coo();const[x,y]=fx.at(bird.el);fx.burst(x,y,8,260);return}
+    if(t.closest('#typist')){this.mood('win',800);snd.coo();const[x,y]=fx.at(this.ty);fx.burst(x,y,8,260);return}
     const v=t.closest('[data-valve]'),b=t.closest('[data-bell]');if(!v&&!b)return;
     const svg=this.el.querySelector('.tpt');
     if(v){const n=+v.dataset.valve,c=svg.querySelector(`.cap[data-c="${n}"]`);c.classList.add('down');setTimeout(()=>c.classList.remove('down'),240);
@@ -880,8 +922,7 @@ const hub={el:$('#r-hub'),face:-1,g:{s:'menu',t:0,i:0},
     else snd.tone(hz(67),.6,.14);
     svg.classList.remove('toot');void svg.getBoundingClientRect();svg.classList.add('toot');
     const r=svg.querySelector('[data-bell]').getBoundingClientRect(),s=stage.getBoundingClientRect(),x=r.right-s.left,y=r.top-s.top+r.height/2;
-    for(let i=0;i<3;i++)fx.ring(x,y,[INK.p,INK.b,INK.i][i],14,70+i*22,.6,5,i*.09);
-    bird.wake();bird.set('hear',700);if(!RM)lag.vx-=90}
+    for(let i=0;i<3;i++)fx.ring(x,y,[INK.p,INK.b,INK.i][i],14,70+i*22,.6,5,i*.09)}
 };
 
 /* ---- nuty: fiszki z nasłuchem ---- */
@@ -1108,7 +1149,7 @@ function perches(){for(const k in rooms){const r=rooms[k],p=r.el.querySelector('
 function measure(){W=stage.clientWidth;H=stage.clientHeight;cam.tx=cam.px=cam.rx*(W+GAP);cam.ty=cam.py=cam.ry*(H+GAP);cam.vx=cam.vy=0;
   perches();fx.size();bird.place(true);if(cur===dlugie)dlugie.size();nuty.lift()}
 function land(){perches();const t=bird.goal();if(t){if(bird.fl){bird.fl.x1=t.x;bird.fl.y1=t.y}else if(!cam.drag){bird.x=t.x;bird.y=t.y}}
-  snd.land(cur.rid);if(!RM){lag.vy+=230;cam.kick=6}cur.landed&&cur.landed()}
+  snd.land(cur.rid);if(!RM){lag.vy+=230;cam.kick=6}cur.landed&&cur.landed();vis(0)}
 function stepCam(dt){
   if(cam.drag){const d=Math.exp(-dt*9);cam.vx*=d;cam.vy*=d}
   else{
@@ -1118,33 +1159,38 @@ function stepCam(dt){
       if(Math.abs(cam.px-cam.tx)<.5&&Math.abs(cam.vx)<10){cam.px=cam.tx;cam.vx=0}
       if(Math.abs(cam.py-cam.ty)<.5&&Math.abs(cam.vy)<10){cam.py=cam.ty;cam.vy=0}}
     if(cam.travel&&cam.px===cam.tx&&cam.py===cam.ty){cam.travel=false;land()}
+    else if(cam.shown&&!cam.travel&&cam.px===cam.tx&&cam.py===cam.ty)vis(0);
   }
   cam.kick*=Math.exp(-dt*5.5);if(Math.abs(cam.kick)<.05)cam.kick=0;
   const t=`translate3d(${(-cam.px).toFixed(1)}px,${(-cam.py).toFixed(1)}px,0)`;if(t!==cam.lt){cam.lt=t;wall.style.transform=t}
-  // the camera pulls back and banks while it travels
+  // the camera pulls back and swings in perspective while it travels: one transform, nothing repaints
   const far=clamp(Math.hypot((cam.px-cam.tx)/(W+GAP),(cam.py-cam.ty)/(H+GAP)),0,1);
-  const cs=RM?'none':`scale(${(1-.09*Math.sin(Math.PI*far)).toFixed(4)}) rotateY(${clamp(cam.vx*.007,-17,17).toFixed(2)}deg) rotateX(${clamp(-cam.vy*.007,-15,15).toFixed(2)}deg) rotate(${clamp(cam.vx*.0006,-1.2,1.2).toFixed(2)}deg)`;
+  const cs=RM?'none':`scale(${(1-.08*Math.sin(Math.PI*far)).toFixed(4)}) rotateY(${clamp(cam.vx*.005,-11,11).toFixed(2)}deg) rotateX(${clamp(-cam.vy*.005,-10,10).toFixed(2)}deg)`;
   if(cs!==cam.lc){cam.lc=cs;camEl.style.transform=cs}
-  const mx=(2.2+clamp(cam.vx*.011,-20,20)+cam.kick).toFixed(1),my=(1.4+clamp(cam.vy*.011,-20,20)-cam.kick*.55).toFixed(1),m=mx+'|'+my;
-  if(m!==cam.lm){cam.lm=m;stage.style.setProperty('--mx',mx);stage.style.setProperty('--my',my)}
+  // style writes below touch only the poster in view, and only while something actually changes
+  const mx=(2.2+cam.kick).toFixed(1),my=(1.4-cam.kick*.55).toFixed(1),m=mx+'|'+my;
+  if(m!==cam.lm){cam.lm=m;cur.el.style.setProperty('--mx',mx);cur.el.style.setProperty('--my',my)}
   if(!RM){
     lag.sx+=(cam.vx-lag.sx)*Math.min(1,dt*14);lag.sy+=(cam.vy-lag.sy)*Math.min(1,dt*14);
     lag.vx+=(170*(lag.sx*.008-lag.x)-12*lag.vx)*dt;lag.vy+=(170*(lag.sy*.008-lag.y)-12*lag.vy)*dt;
     lag.x=clamp(lag.x+lag.vx*dt,-28,28);lag.y=clamp(lag.y+lag.vy*dt,-28,28);
-    const l=lag.x.toFixed(1)+'|'+lag.y.toFixed(1);if(l!==cam.ll){cam.ll=l;stage.style.setProperty('--lx',lag.x.toFixed(1));stage.style.setProperty('--ly',lag.y.toFixed(1))}
-    {const n=performance.now();if(n-ptr.last>2500){ptr.tx=Math.sin(n/2300)*.6;ptr.ty=Math.cos(n/3100)*.45}}
-    ptr.x+=(ptr.tx-ptr.x)*Math.min(1,dt*5);ptr.y+=(ptr.ty-ptr.y)*Math.min(1,dt*5);
-    const pp=ptr.x.toFixed(2)+'|'+ptr.y.toFixed(2);if(pp!==ptr.l){ptr.l=pp;stage.style.setProperty('--ptx',ptr.x.toFixed(2));stage.style.setProperty('--pty',ptr.y.toFixed(2))}
+    const l=lag.x.toFixed(1)+'|'+lag.y.toFixed(1);
+    if(l!==cam.ll){cam.ll=l;for(const e of cur.lagEls)e.el.style.translate=`${(lag.x*e.k).toFixed(1)}px ${(lag.y*e.k).toFixed(1)}px`}
+    if(cur===hub){ptr.x+=(ptr.tx-ptr.x)*Math.min(1,dt*5);ptr.y+=(ptr.ty-ptr.y)*Math.min(1,dt*5);
+      const pp=ptr.x.toFixed(2)+'|'+ptr.y.toFixed(2);if(pp!==ptr.l){ptr.l=pp;hub.scene.style.setProperty('--ptx',ptr.x.toFixed(2));hub.scene.style.setProperty('--pty',ptr.y.toFixed(2))}}
   }
   snd.slide(cam.drag||cam.travel?Math.hypot(cam.vx,cam.vy):0);
 }
 const DIRS={E:[1,0],W:[-1,0],S:[0,1],N:[0,-1]};
+function vis(m,old){cam.shown=!!m;const[cx,cy]=cur.rid.split(',').map(Number);
+  for(const k in rooms){const r=rooms[k],[x,y]=k.split(',').map(Number);
+    r.el.classList.toggle('on',r===cur||(!!m&&r===old));r.el.classList.toggle('live',r===cur)}}
 const neighbour=d=>rooms[(cam.rx+DIRS[d][0])+','+(cam.ry+DIRS[d][1])];
 const hasEdge=d=>cur.edges&&cur.edges.includes(d)&&(!cur.edges_ok||cur.edges_ok(d));
 let wake=null;
 function goTo(x,y){const r=rooms[x+','+y];if(!r||r===cur)return;
   const fwd=x>cam.rx||y>cam.ry;
-  cur.leave&&cur.leave();cam.rx=x;cam.ry=y;cam.tx=x*(W+GAP);cam.ty=y*(H+GAP);cam.travel=true;cur=r;
+  const old=cur;cur.leave&&cur.leave();for(const v of['--mx','--my','--beat'])old.el.style.removeProperty(v);for(const e of old.lagEls)e.el.style.translate='';cam.lm=cam.ll=beatL='';cam.rx=x;cam.ry=y;cam.tx=x*(W+GAP);cam.ty=y*(H+GAP);cam.travel=true;cur=r;vis(1,old);
   for(const k in rooms)rooms[k].el.inert=rooms[k]!==cur;
   document.querySelectorAll('#map rect').forEach(e=>e.classList.toggle('at',e.dataset.k===r.rid));stage.dataset.room=r.rid;pop($('#map'));
   bird.liftT=0;bird.puff(0);bird.sayEl.classList.remove('on');
@@ -1172,7 +1218,7 @@ stage.addEventListener('pointermove',e=>{
   const dx=e.clientX-g.x0,dy=e.clientY-g.y0;
   if(!g.axis){if(Math.hypot(dx,dy)<10)return;g.axis=Math.abs(dx)>Math.abs(dy)?'x':'y';stage.classList.add('dragging');if(g.held){g.held=false;cur.holdEnd&&cur.holdEnd()}}
   const d=g.axis==='x'?dx:dy,dim=g.axis==='x'?W:H,dir=g.axis==='x'?(d<0?'E':'W'):(d<0?'S':'N');
-  if(g.dir&&g.dir!==dir&&cur.edgeDrag)cur.edgeDrag(g.dir,0);g.dir=dir;
+  if(g.dir&&g.dir!==dir&&cur.edgeDrag)cur.edgeDrag(g.dir,0);if(g.dir!==dir)vis(1,neighbour(dir));g.dir=dir;
   const now=performance.now(),p=g.axis==='x'?e.clientX:e.clientY,lp=g.axis==='x'?g.lx:g.ly;
   if(now>g.lt){g.v=g.v*.5+((p-lp)/(now-g.lt))*.5}g.lx=e.clientX;g.ly=e.clientY;g.lt=now;
   let off;
@@ -1219,15 +1265,15 @@ addEventListener('resize',measure);
 stage.addEventListener('contextmenu',e=>e.preventDefault());
 
 /* ================= boot ================= */
-for(const k in rooms){rooms[k].init&&rooms[k].init();rooms[k].el.inert=rooms[k]!==hub}
+for(const k in rooms){const r=rooms[k];r.init&&r.init();r.el.inert=r!==hub;r.lagEls=[...r.el.querySelectorAll('[data-lag]')].map(el=>({el,k:parseFloat(el.style.getPropertyValue('--k'))||1}))}
 {const C={'0,0':['pink','blue','yellow'],'1,0':['yellow','blue','white'],'-1,0':['pink','blue'],'0,-1':['yellow','pink','white'],'0,1':['pink','yellow','blue']};   // drifting paper scraps behind everything
-  for(const k in rooms)for(let i=0;i<7;i++){const e=document.createElement('i'),r=Math.random;e.className='fl s'+(i%4);
+  for(const k in rooms)for(let i=0;i<4;i++){const e=document.createElement('i'),r=Math.random;e.className='fl s'+(i%4);
     e.style.cssText=`--s:${14+r()*30|0}px;--x:${r()*92|0}%;--y:${6+r()*84|0}%;--c:var(--${C[k][i%C[k].length]});--d:${5+r()*7}s;--dl:-${r()*8}s;--tx:${(r()-.5)*90|0}px;--ty:${(r()-.5)*110|0}px;--r:${(r()-.5)*260|0}deg`;
     rooms[k].el.prepend(e)}}
 document.querySelector('#map rect[data-k="0,0"]').classList.add('at');stage.dataset.room='0,0';
-measure();hub.enter();
+vis(0);measure();hub.enter();
 let intro=!RM;
-if(intro){bird.x=-110;bird.y=H*.2;bird.face=1;   // the pigeon flies in once the poster is up
+if(intro){hub.home(false);bird.x=-110;bird.y=H*.2;bird.face=1;   // the pigeon flies in once the poster is up
   setTimeout(()=>{intro=false;bird.place()},900);setTimeout(()=>stage.classList.remove('boot'),2400)}
 else stage.classList.remove('boot');
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{perches();const t=bird.goal();if(bird.fl){bird.fl.x1=t.x;bird.fl.y1=t.y}else if(!intro)bird.place(true)});
@@ -1236,8 +1282,8 @@ function tick(now){const dt=Math.min(.05,(now-last)/1000);last=now;
   stepCam(dt);
   const f=cur.listens?ear.read(now):null;
   cur.frame&&cur.frame(f,now,dt);
-  if(!RM){const lv=f&&f.voiced?Math.min(1,f.level*7):0;beat+=(lv-beat)*Math.min(1,dt*(lv>beat?18:5));   // the backdrop breathes, and swells with the sound
-    const b=(beat*.8+.2*(.5+.5*Math.sin(now/480))).toFixed(2);if(b!==beatL){beatL=b;stage.style.setProperty('--beat',b)}}
+  if(!RM&&cur.listens){const lv=f&&f.voiced?Math.min(1,f.level*7):0;beat+=(lv-beat)*Math.min(1,dt*(lv>beat?18:5));   // the backdrop swells with the sound
+    const b=(Math.round(beat*20)/20).toFixed(2);if(b!==beatL){beatL=b;cur.el.style.setProperty('--beat',b)}}
   bird.frame(now,dt);
   fx.frame(dt);
   requestAnimationFrame(tick)}
