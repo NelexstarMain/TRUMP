@@ -158,7 +158,6 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 .mg.win .res{background:radial-gradient(circle,transparent 30%,var(--yellow) 31% 46%,transparent 47%);animation:mopen .3s}
 .mg.fail{animation:mshake .4s linear}
 @keyframes mshake{20%{transform:translateX(-.9em)}40%{transform:translateX(.8em)}60%{transform:translateX(-.5em)}80%{transform:translateX(.3em)}}
-.tpt{left:31em;top:38em;width:19em;height:auto;overflow:visible;transform:rotate(-8deg)}
 /* the pigeon at the keyboard, seen from behind, facing the monitor */
 .typist{left:16.2em;top:23.5em;width:19em;height:auto;overflow:visible;opacity:0;transform:scale(.5);transform-origin:50% 100%;transition:opacity .15s,transform .25s cubic-bezier(.2,1.5,.4,1);cursor:pointer}
 .hub.home .typist{opacity:1;transform:none}
@@ -341,12 +340,6 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
 .stroj::before{translate:calc(var(--lx,0)*-2px) 0 -170px}
 .dlugie::before{translate:calc(var(--lx,0)*-2px) 0 -170px;scale:calc(1 + var(--grow,0)*.95);transition:scale .9s cubic-bezier(.2,1,.3,1)}
 .hub::after{animation:spin 140s linear infinite}
-.cap{transition:transform .08s}
-.cap.down{transform:translateY(14px)}
-.tpt .bell{transform-box:fill-box;transform-origin:0 50%}
-.tpt.toot .bell{animation:toot .28s ease-out 1}
-@keyframes toot{35%{transform:scale(1.07,1.16)}}
-[data-valve],[data-bell]{cursor:pointer}
 /* hub edges invite a swipe now and then */
 @keyframes nudge{0%,84%,100%{translate:0 0}89%{translate:var(--nx,0) var(--ny,0)}94%{translate:calc(var(--nx,0)*-.35) calc(var(--ny,0)*-.35)}}
 /* first load: the hub gets pasted together */
@@ -412,31 +405,6 @@ sup{font-size:.55em;vertical-align:.62em;line-height:0;margin-left:.04em}
           <div class="box base"><div class="f side"></div><div class="f top"></div><div class="f front"><i class="slot"></i><i class="led"></i></div></div>
           <div class="kbd"></div><div class="mouse"></div>
         </div>
-        <svg class="tpt" viewBox="0 0 470 170" aria-hidden="true">
-          <g class="pl pl-y" fill="none" stroke="var(--yellow)" stroke-linecap="round">
-            <path d="M330 52H128a33 33 0 0 0 0 66H214" stroke-width="14"/>
-            <path d="M52 86H352a16 16 0 0 1 0 32H292" stroke-width="10"/>
-            <path class="bell" d="M326 45C376 45 416 32 448 2V102C416 72 376 59 326 59Z" fill="var(--yellow)" stroke="none"/>
-          </g>
-          <g class="pl pl-p" fill="var(--pink)">
-            <rect x="212" y="44" width="26" height="90" rx="6"/><rect x="247" y="44" width="26" height="90" rx="6"/><rect x="282" y="44" width="26" height="90" rx="6"/>
-            <path d="M128 57H326M132 123H210M100 86a30 30 0 0 0 28 37" fill="none" stroke="var(--pink)" stroke-width="4.500"/>
-            <path class="bell" d="M326 59C376 59 416 72 448 102V84C416 60 376 53 326 53Z"/>
-            <ellipse class="bell" cx="448" cy="52" rx="8" ry="50"/>
-          </g>
-          <g class="pl pl-b" fill="var(--blue)" stroke="var(--blue)">
-            <ellipse class="bell" cx="449" cy="52" rx="4" ry="37" stroke="none"/>
-            <path d="M8 75l22 7v8l-22 7zM30 82h26v8H30z" stroke="none"/>
-            <g class="cap" data-c="1"><path d="M225 44V28" stroke-width="5" fill="none"/><ellipse cx="225" cy="25" rx="12" ry="5"/></g>
-            <g class="cap" data-c="2"><path d="M260 44V28" stroke-width="5" fill="none"/><ellipse cx="260" cy="25" rx="12" ry="5"/></g>
-            <g class="cap" data-c="3"><path d="M295 44V28" stroke-width="5" fill="none"/><ellipse cx="295" cy="25" rx="12" ry="5"/></g>
-            <path d="M214 136h22M249 136h22M284 136h22" stroke-width="6" fill="none" stroke-linecap="round"/>
-            <path d="M170 59V81M334 59V81" stroke-width="4" fill="none"/><path d="M318 81c0-15 17-15 17 0" stroke-width="3" fill="none"/>
-          </g>
-          <g fill="none" stroke="var(--white)" stroke-linecap="round" opacity=".85"><path d="M134 47.500H318" stroke-width="2.400"/><path d="M62 83.500H340" stroke-width="1.700"/><path d="M340 46C380 44 414 32 440 12" stroke-width="2.600"/></g>
-          <rect data-valve="1" x="207" y="6" width="35" height="146" fill="transparent"/><rect data-valve="2" x="242" y="6" width="35" height="146" fill="transparent"/><rect data-valve="3" x="277" y="6" width="35" height="146" fill="transparent"/>
-          <path data-bell d="M322 38C376 38 416 26 456 0V106C416 80 376 66 322 66Z" fill="transparent"/>
-        </svg>
         <svg class="typist" id="typist" viewBox="0 0 150 165" data-s="type" aria-hidden="true"><g class="ty-all">
           <g class="b-out">
             <path d="M52 126l-13 34 23-9 13 11 13-11 23 9-13-34z"/>
@@ -915,15 +883,7 @@ const hub={el:$('#r-hub'),g:{s:'menu',t:0,i:0},tt:0,
       g.s='res';g.t=now+1150}
     else{this.clear();g.s='menu';g.t=now+650}},
   tap(t){
-    if(t.closest('#typist')){this.mood('win',800);snd.coo();const[x,y]=fx.at(this.ty);fx.burst(x,y,8,260);return}
-    const v=t.closest('[data-valve]'),b=t.closest('[data-bell]');if(!v&&!b)return;
-    const svg=this.el.querySelector('.tpt');
-    if(v){const n=+v.dataset.valve,c=svg.querySelector(`.cap[data-c="${n}"]`);c.classList.add('down');setTimeout(()=>c.classList.remove('down'),240);
-      snd.valve(true);snd.tone(hz([65,66,64][n-1]),.42,.13)}
-    else snd.tone(hz(67),.6,.14);
-    svg.classList.remove('toot');void svg.getBoundingClientRect();svg.classList.add('toot');
-    const r=svg.querySelector('[data-bell]').getBoundingClientRect(),s=stage.getBoundingClientRect(),x=r.right-s.left,y=r.top-s.top+r.height/2;
-    for(let i=0;i<3;i++)fx.ring(x,y,[INK.p,INK.b,INK.i][i],14,70+i*22,.6,5,i*.09)}
+    if(t.closest('#typist')){this.mood('win',800);snd.coo();const[x,y]=fx.at(this.ty);fx.burst(x,y,8,260);return}}
 };
 
 /* ---- nuty: fiszki z nasłuchem ---- */
